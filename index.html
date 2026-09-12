@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Verificação de Aprendizagem - Prof. Marcilon Fonseca</title>
+  
+  <style>
+    * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; }
+    
+    h2 { text-align: center; color: #1a365d; margin-bottom: 5px; font-size: 20px; }
+    p.sub { text-align: center; color: #4a5568; font-size: 13px; margin-top: 0; margin-bottom: 15px; }
+    
+    .setup-box { background: #ffffff; padding: 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); border-left: 5px solid #2b6cb0; }
+    .setup-box label { font-size: 13px; color: #2d3748; font-weight: bold; display: block; margin-top: 8px; }
+    .setup-box input { width: 100%; padding: 10px; font-size: 15px; border: 1px solid #cbd5e0; border-radius: 6px; margin-top: 4px; outline: none; }
+    .setup-box input:focus { border-color: #2b6cb0; }
+
+    .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .question { font-weight: bold; color: #1a202c; margin-bottom: 12px; font-size: 14px; line-height: 1.4; }
+    
+    .option-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding: 6px; border-radius: 6px; background: #f8fafc; transition: opacity 0.3s; }
+    .option-text { font-size: 13px; color: #2d3748; flex: 1; padding-right: 8px; }
+    
+    .scratch-container { position: relative; width: 100px; height: 38px; border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+    .behind-content { 
+      position: absolute; width: 100%; height: 100%; 
+      display: flex; align-items: center; justify-content: center; 
+      font-weight: bold; font-size: 10px; text-align: center; border-radius: 6px;
+    }
+    
+    .correct { background-color: #c6f6d5; color: #22543d; }
+    .wrong { background-color: #fed7d7; color: #742a2a; }
+    
+    canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; touch-action: none; cursor: pointer; }
+    .disabled-option { opacity: 0.4; pointer-events: none; }
+
+    .finish-btn { background: #2b6cb0; color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(43, 108, 176, 0.3); }
+    .finish-btn:disabled { background: #a0aec0; }
+    #bloqueio { text-align: center; padding: 40px 20px; color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 8px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+
+  <div id="main-content">
+    <h2 id="quiz-title">Avaliação de Desempenho</h2>
+    <p class="sub" id="quiz-subtitle">Responda raspando a alternativa escolhida</p>
+
+    <div class="setup-box">
+      <label for="studentName">Nome Completo do Aluno:</label>
+      <input type="text" id="studentName" placeholder="Digite seu nome completo">
+      
+      <label for="studentId">Matrícula / RA:</label>
+      <input type="text" id="studentId" placeholder="Digite sua matrícula">
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <button class="finish-btn" onclick="submitResults(false, 'NÃO')">Enviar Respostas</button>
+  </div>
+
+  <script>
+    const powerAutomateUrl = "https://default73319f4289084b899f8d558cf4d5d7.76.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/12/workflows/908fa338e2e04870adda5272b92a467e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=eN2PEGlrN6zSvv9MMwXUbMVBCHOeSOJ5G24_IXOZruM";
+
+    const quizConfig = {
+      title: "Verificação de Aprendizagem - Circuitos I",
+      subtitle: "Análise de Malhas e Leis de Kirchhoff",
+      questions: [
+        {
+          id: 1,
+          title: "1) Na Análise de Malhas, o que é uma corrente de malha?",
+          options: [
+            { letter: "A", text: "A corrente real medida por um amperímetro.", correct: false },
+            { letter: "B", text: "Uma corrente fictícia que circula em um laço fechado sem laços internos.", correct: true },
+            { letter: "C", text: "A soma de todas as correntes dos nós.", correct: false },
+            { letter: "D", text: "A corrente total fornecida pela fonte principal.", correct: false }
+          ]
+        },
+        {
+          id: 2,
+          title: "2) Um resistor R12 é compartilhado entre a Malha 1 (I1) e a Malha 2 (I2), ambas no sentido horário. Qual a queda de tensão em R12 na equação da Malha 1?",
+          options: [
+            { letter: "A", text: "R12 * (I1 + I2)", correct: false },
+            { letter: "B", text: "R12 * (I2 - I1)", correct: false },
+            { letter: "C", text: "R12 * (I1 - I2)", correct: true },
+            { letter: "D", text: "R12 * I1", correct: false }
+          ]
+        },
+        {
+          id: 3,
+          title: "3) Ao percorrer uma malha no sentido da corrente e passar de (-) para (+) em uma fonte de tensão, como ela entra na LKT?",
+          options: [
+            { letter: "A", text: "Com sinal negativo (-Vs).", correct: true },
+            { letter: "B", text: "Com sinal positivo (+Vs).", correct: false },
+            { letter: "C", text: "Multiplicada pela resistência da malha.", correct: false },
+            { letter: "D", text: "Ela é ignorada na equação.", correct: false }
+          ]
+        },
+        {
+          id: 4,
+          title: "4) Na representação matricial [R][I] = [V], o que representam os elementos fora da diagonal principal (ex: R12)?",
+          options: [
+            { letter: "A", text: "A soma de todos os resistores do circuito.", correct: false },
+            { letter: "B", text: "O valor positivo do resistor do ramo principal.", correct: false },
+            { letter: "C", text: "O valor negativo da resistência compartilhada entre as malhas.", correct: true },
+            { letter: "D", text: "A potência dissipada na malha.", correct: false }
+          ]
+        }
+      ]
+    };
+
+    // --- TRAVA DE LOCALSTORAGE ---
+    if (localStorage.getItem("prova_circuitos_bloqueada") === "true") {
+      document.addEventListener("DOMContentLoaded", function() {
+        exibirTelaBloqueio("Você já realizou este teste neste dispositivo. Se precisa refazer por autorização do professor, solicite a liberação.");
+      });
+    } else {
+      localStorage.setItem("prova_circuitos_bloqueada", "true");
+    }
+
+    let selectedAnswers = {}; 
+    let isSubmitted = false;
+    let tabSwitchCount = 0;
+
+    // CAPTURA TENTATIVA DE SAÍDA / ATUALIZAÇÃO E REALIZA ENVIO AUTOMÁTICO
+    window.addEventListener("beforeunload", function (e) {
+      if (!isSubmitted) {
+        // Envio síncrono via Beacon/Fetch emergencial antes da página fechar
+        submitResults(true, "SIM");
+        e.preventDefault();
+        e.returnValue = "Atenção: Ao sair ou recarregar, seu teste será enviado no estado atual e registrado no sistema!";
+        return e.returnValue;
+      }
+    });
+
+    function renderQuiz() {
+      document.getElementById('quiz-title').innerText = quizConfig.title;
+      document.getElementById('quiz-subtitle').innerText = quizConfig.subtitle;
+
+      const container = document.getElementById('quiz-container');
+      if (!container) return;
+      container.innerHTML = '';
+      
+      quizConfig.questions.forEach((q) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.id = `question-card-${q.id}`;
+        
+        let html = `<div class="question">${q.title}</div>`;
+        
+        q.options.forEach((opt, optIndex) => {
+          const statusClass = opt.correct ? 'correct' : 'wrong';
+          const statusText = opt.correct ? '★ CORRETO' : '❌ ERRADO';
+          const canvasId = `canvas-${q.id}-${optIndex}`;
+
+          html += `
+            <div class="option-row" id="row-${q.id}-${optIndex}">
+              <div class="option-text"><b>${opt.letter})</b> ${opt.text}</div>
+              <div class="scratch-container">
+                <div class="behind-content ${statusClass}">${statusText}</div>
+                <canvas id="${canvasId}" width="100" height="38"></canvas>
+              </div>
+            </div>
+          `;
+        });
+        
+        card.innerHTML = html;
+        container.appendChild(card);
+
+        q.options.forEach((_, optIndex) => {
+          initCanvas(`canvas-${q.id}-${optIndex}`, q.id, optIndex, q.options[optIndex].letter);
+        });
+      });
+    }
+
+    function initCanvas(canvasId, qId, optIndex, letter) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#cbd5e0';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#4a5568';
+      ctx.font = 'bold 10px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('RASPE AQUI', canvas.width / 2, 23);
+
+      let isDrawing = false;
+
+      function scratch(e) {
+        const name = document.getElementById('studentName').value.trim();
+        const id = document.getElementById('studentId').value.trim();
+
+        if (!name || !id) {
+          alert("⚠️ Preencha seu Nome e Matrícula/RA antes de começar a responder!");
+          isDrawing = false;
+          if(!name) document.getElementById('studentName').focus();
+          else document.getElementById('studentId').focus();
+          return;
+        }
+
+        if (selectedAnswers[qId] && selectedAnswers[qId] !== letter) return;
+        if (!isDrawing) return;
+        e.preventDefault();
+        
+        if (!selectedAnswers[qId]) {
+          selectedAnswers[qId] = letter;
+          lockOtherOptions(qId, optIndex);
+        }
+
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches ? e.touches[0] : e;
+        const x = (touch.clientX - rect.left) * (canvas.width / rect.width);
+        const y = (touch.clientY - rect.top) * (canvas.height / rect.height);
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 12, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+      canvas.addEventListener('touchmove', scratch);
+      canvas.addEventListener('touchend', () => { isDrawing = false; });
+      canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+      canvas.addEventListener('mousemove', scratch);
+      canvas.addEventListener('mouseup', () => { isDrawing = false; });
+    }
+
+    function lockOtherOptions(qId, chosenOptIndex) {
+      const q = quizConfig.questions.find(item => item.id === qId);
+      q.options.forEach((_, optIndex) => {
+        if (optIndex !== chosenOptIndex) {
+          const row = document.getElementById(`row-${qId}-${optIndex}`);
+          if (row) row.classList.add('disabled-option');
+        }
+      });
+    }
+
+    function submitResults(isForced = false, reloadAttempt = "NÃO") {
+      if (isSubmitted) return;
+
+      let name = document.getElementById('studentName') ? document.getElementById('studentName').value.trim() : "";
+      let studentId = document.getElementById('studentId') ? document.getElementById('studentId').value.trim() : "";
+
+      if ((!name || !studentId) && !isForced) {
+        alert("Por favor, preencha seu nome e sua matrícula antes de enviar.");
+        return;
+      }
+
+      if (Object.keys(selectedAnswers).length < quizConfig.questions.length && !isForced) {
+        if(!confirm("Você ainda não respondeu todas as questões. Deseja enviar assim mesmo?")) return;
+      }
+
+      if (isForced && !name) {
+        name = "ALUNO NÃO IDENTIFICADO (Saindo/Recarregando)";
+        studentId = "N/A";
+      }
+
+      const btn = document.querySelector('.finish-btn');
+      if (btn) {
+        btn.innerText = "Enviando...";
+        btn.disabled = true;
+      }
+
+      isSubmitted = true;
+
+      // Cria a data/hora exata do envio no formato YYYY-MM-DD HH:mm:ss
+      const now = new Date();
+      const dataHora = now.toISOString().replace('T', ' ').substring(0, 19);
+
+      const payload = {
+        Data: dataHora,
+        Aluno: name,
+        Matricula: studentId,
+        Respostas: JSON.stringify(selectedAnswers),
+        TrocasDeTela: tabSwitchCount,
+        TentativaAtualizacao: reloadAttempt
+      };
+
+      // Utiliza navigator.sendBeacon caso seja uma saída de página para garantir o envio
+      if (isForced && navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        navigator.sendBeacon(powerAutomateUrl, blob);
+        return;
+      }
+
+      fetch(powerAutomateUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(response => {
+        if (response.ok) {
+          document.getElementById("main-content").innerHTML = `
+            <div style="text-align:center; color:#155724; background:#d4edda; padding:30px; border-radius:8px; margin-top: 30px;">
+              <h2>✅ Teste Enviado com Sucesso!</h2>
+              <p>Obrigado, <strong>${name}</strong>. Suas respostas foram registradas.</p>
+            </div>
+          `;
+        } else {
+          throw new Error("Erro na requisição");
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        if (!isForced) {
+          alert("Erro ao conectar com o servidor. Tente novamente.");
+          isSubmitted = false;
+          if (btn) {
+            btn.innerText = "Enviar Respostas";
+            btn.disabled = false;
+          }
+        }
+      });
+    }
+
+    document.addEventListener("visibilitychange", function() {
+      if (document.hidden && !isSubmitted) {
+        tabSwitchCount++;
+        if (tabSwitchCount === 1) alert("⚠️ ATENÇÃO: Você saiu da tela do teste!\n\n(1ª infração registrada).");
+        else if (tabSwitchCount === 2) alert("⚠️ AVISO CRÍTICO: Segunda saída detectada!\n\nMais uma saída bloqueará o teste.");
+        else if (tabSwitchCount >= 3) {
+          alert("🚫 TESTE BLOQUEADO!\n\nLimite de saídas excedido. Suas respostas foram enviadas.");
+          document.body.style.pointerEvents = "none";
+          document.body.style.opacity = "0.4";
+          submitResults(true, "NÃO");
+        }
+      }
+    });
+
+    function exibirTelaBloqueio(mensagem) {
+      document.body.innerHTML = `
+        <div style="max-width: 600px; margin: auto; padding: 20px;">
+          <div id="bloqueio">
+            <h2>⚠️ Acesso Restrito</h2>
+            <p>${mensagem}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    window.onload = function() {
+      if (localStorage.getItem("prova_circuitos_bloqueada") !== "true") {
+        renderQuiz();
+      }
+    };
+  </script>
+</body>
+</html>
