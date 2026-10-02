@@ -120,8 +120,7 @@
       margin-right: 10px;
     }
 
-    /* Estilo para opções desabilitadas enquanto não preenche o nome */
-    .options input[type="radio"]:disabled + span,
+    /* Estilo para opções desabilitadas */
     .options label.disabled-label {
       opacity: 0.5;
       cursor: not-allowed;
@@ -155,16 +154,24 @@
       font-size: 14px;
     }
 
+    /* Alerta Flutuante (Sempre Visível na Tela) */
     #alertBox {
       display: none;
-      background-color: #f8d7da;
-      color: #721c24;
-      padding: 12px 15px;
-      border-radius: 4px;
-      border: 1px solid #f5c6cb;
-      margin-bottom: 20px;
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      width: 90%;
+      max-width: 600px;
+      background-color: #dc3545;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       font-weight: bold;
       text-align: center;
+      font-size: 16px;
     }
 
     .blocked-screen {
@@ -175,6 +182,9 @@
 </head>
 <body>
 
+  <!-- Alerta flutuante que aparece no topo independente da rolagem -->
+  <div id="alertBox"></div>
+
   <div class="container" id="mainContainer">
     <header>
       <h1>Pontifícia Universidade Católica de Goiás</h1>
@@ -183,10 +193,6 @@
 
     <div class="warning-banner">
       ⚠️ <strong>Atenção:</strong> Preencha seu Nome e Matrícula para liberar as alternativas. O sistema detecta trocas de tela e tentativas de atualização.
-    </div>
-
-    <div id="alertBox">
-      ⚠️ Troca de tela detectada! Isso afetará a sua pontuação final.
     </div>
 
     <form id="examForm">
@@ -205,11 +211,11 @@
       <div class="question-card">
         <div class="question-title">QUESTÃO 1 (Lei de Ohm e Potência Dissipada)<br>Um resistor de carbono possui valor nominal R = 120 ohms e potência máxima suportada de 0,5 W (1/2 W). Qual é a máxima tensão contínua V que pode ser aplicada aos terminais deste resistor sem exceder a sua capacidade de dissipação de potência?</div>
         <div class="options">
-          <label><input type="radio" name="q1" value="A" disabled onclick="saveProgress()"> a) 6 V</label>
-          <label><input type="radio" name="q1" value="B" disabled onclick="saveProgress()"> b) 7,75 V</label>
-          <label><input type="radio" name="q1" value="C" disabled onclick="saveProgress()"> c) 12 V</label>
-          <label><input type="radio" name="q1" value="D" disabled onclick="saveProgress()"> d) 24 V</label>
-          <label><input type="radio" name="q1" value="E" disabled onclick="saveProgress()"> e) 60 V</label>
+          <label class="disabled-label"><input type="radio" name="q1" value="A" disabled onclick="saveProgress()"> a) 6 V</label>
+          <label class="disabled-label"><input type="radio" name="q1" value="B" disabled onclick="saveProgress()"> b) 7,75 V</label>
+          <label class="disabled-label"><input type="radio" name="q1" value="C" disabled onclick="saveProgress()"> c) 12 V</label>
+          <label class="disabled-label"><input type="radio" name="q1" value="D" disabled onclick="saveProgress()"> d) 24 V</label>
+          <label class="disabled-label"><input type="radio" name="q1" value="E" disabled onclick="saveProgress()"> e) 60 V</label>
         </div>
       </div>
 
@@ -225,11 +231,11 @@
           A potência total absorvida pelo resistor de 4 ohms e a corrente total injetada pela fonte dependente são, respectivamente:
         </div>
         <div class="options">
-          <label><input type="radio" name="q2" value="A" disabled onclick="saveProgress()"> a) 144 W e 12 A</label>
-          <label><input type="radio" name="q2" value="B" disabled onclick="saveProgress()"> b) 144 W e 6 A</label>
-          <label><input type="radio" name="q2" value="C" disabled onclick="saveProgress()"> c) 72 W e 12 A</label>
-          <label><input type="radio" name="q2" value="D" disabled onclick="saveProgress()"> d) 576 W e 24 A</label>
-          <label><input type="radio" name="q2" value="E" disabled onclick="saveProgress()"> e) 288 W e 12 A</label>
+          <label class="disabled-label"><input type="radio" name="q2" value="A" disabled onclick="saveProgress()"> a) 144 W e 12 A</label>
+          <label class="disabled-label"><input type="radio" name="q2" value="B" disabled onclick="saveProgress()"> b) 144 W e 6 A</label>
+          <label class="disabled-label"><input type="radio" name="q2" value="C" disabled onclick="saveProgress()"> c) 72 W e 12 A</label>
+          <label class="disabled-label"><input type="radio" name="q2" value="D" disabled onclick="saveProgress()"> d) 576 W e 24 A</label>
+          <label class="disabled-label"><input type="radio" name="q2" value="E" disabled onclick="saveProgress()"> e) 288 W e 12 A</label>
         </div>
       </div>
 
@@ -237,11 +243,11 @@
       <div class="question-card">
         <div class="question-title">QUESTÃO 3 (Associação em Série e LKT)<br>Três resistores R1 = 10 ohms, R2 = 15 ohms e R3 = 25 ohms estão conectados em série com uma fonte de tensão contínua de V_S = 100 V. A queda de tensão sobre o resistor R2 e a potência fornecida pela fonte são, respectivamente:</div>
         <div class="options">
-          <label><input type="radio" name="q3" value="A" disabled onclick="saveProgress()"> a) 15 V e 100 W</label>
-          <label><input type="radio" name="q3" value="B" disabled onclick="saveProgress()"> b) 30 V e 200 W</label>
-          <label><input type="radio" name="q3" value="C" disabled onclick="saveProgress()"> c) 30 V e 100 W</label>
-          <label><input type="radio" name="q3" value="D" disabled onclick="saveProgress()"> d) 50 V e 200 W</label>
-          <label><input type="radio" name="q3" value="E" disabled onclick="saveProgress()"> e) 15 V e 50 W</label>
+          <label class="disabled-label"><input type="radio" name="q3" value="A" disabled onclick="saveProgress()"> a) 15 V e 100 W</label>
+          <label class="disabled-label"><input type="radio" name="q3" value="B" disabled onclick="saveProgress()"> b) 30 V e 200 W</label>
+          <label class="disabled-label"><input type="radio" name="q3" value="C" disabled onclick="saveProgress()"> c) 30 V e 100 W</label>
+          <label class="disabled-label"><input type="radio" name="q3" value="D" disabled onclick="saveProgress()"> d) 50 V e 200 W</label>
+          <label class="disabled-label"><input type="radio" name="q3" value="E" disabled onclick="saveProgress()"> e) 15 V e 50 W</label>
         </div>
       </div>
 
@@ -249,11 +255,11 @@
       <div class="question-card">
         <div class="question-title">QUESTÃO 4 (Análise de Laços Múltiplos e LKT)<br>Um circuito de duas malhas possui uma fonte independente de tensão de 30 V na malha 1, um resistor R1 = 5 ohms exclusivo da malha 1, um resistor R2 = 10 ohms compartilhado entre a malha 1 e a malha 2, e um resistor R3 = 10 ohms exclusivo da malha 2. Não há fontes na malha 2.<br><br>As correntes de malha i1 (malha 1) e i2 (malha 2), ambas orientadas no sentido horário, são respectivamente:</div>
         <div class="options">
-          <label><input type="radio" name="q4" value="A" disabled onclick="saveProgress()"> a) i1 = 3 A; i2 = 1 A</label>
-          <label><input type="radio" name="q4" value="B" disabled onclick="saveProgress()"> b) i1 = 2 A; i2 = 1 A</label>
-          <label><input type="radio" name="q4" value="C" disabled onclick="saveProgress()"> c) i1 = 2 A; i2 = 2 A</label>
-          <label><input type="radio" name="q4" value="D" disabled onclick="saveProgress()"> d) i1 = 2,4 A; i2 = 1,2 A</label>
-          <label><input type="radio" name="q4" value="E" disabled onclick="saveProgress()"> e) i1 = 3 A; i2 = 1,5 A</label>
+          <label class="disabled-label"><input type="radio" name="q4" value="A" disabled onclick="saveProgress()"> a) i1 = 3 A; i2 = 1 A</label>
+          <label class="disabled-label"><input type="radio" name="q4" value="B" disabled onclick="saveProgress()"> b) i1 = 2 A; i2 = 1 A</label>
+          <label class="disabled-label"><input type="radio" name="q4" value="C" disabled onclick="saveProgress()"> c) i1 = 2 A; i2 = 2 A</label>
+          <label class="disabled-label"><input type="radio" name="q4" value="D" disabled onclick="saveProgress()"> d) i1 = 2,4 A; i2 = 1,2 A</label>
+          <label class="disabled-label"><input type="radio" name="q4" value="E" disabled onclick="saveProgress()"> e) i1 = 3 A; i2 = 1,5 A</label>
         </div>
       </div>
 
@@ -270,11 +276,11 @@
           A tensão V_A no nó A e a corrente que atravessa o Ramo 3 são, respectivamente:
         </div>
         <div class="options">
-          <label><input type="radio" name="q5" value="A" disabled onclick="saveProgress()"> a) 60 V e 4 A</label>
-          <label><input type="radio" name="q5" value="B" disabled onclick="saveProgress()"> b) 50 V e 3,33 A</label>
-          <label><input type="radio" name="q5" value="C" disabled onclick="saveProgress()"> c) 100 V e 6,67 A</label>
-          <label><input type="radio" name="q5" value="D" disabled onclick="saveProgress()"> d) 120 V e 8 A</label>
-          <label><input type="radio" name="q5" value="E" disabled onclick="saveProgress()"> e) 30 V e 2 A</label>
+          <label class="disabled-label"><input type="radio" name="q5" value="A" disabled onclick="saveProgress()"> a) 60 V e 4 A</label>
+          <label class="disabled-label"><input type="radio" name="q5" value="B" disabled onclick="saveProgress()"> b) 50 V e 3,33 A</label>
+          <label class="disabled-label"><input type="radio" name="q5" value="C" disabled onclick="saveProgress()"> c) 100 V e 6,67 A</label>
+          <label class="disabled-label"><input type="radio" name="q5" value="D" disabled onclick="saveProgress()"> d) 120 V e 8 A</label>
+          <label class="disabled-label"><input type="radio" name="q5" value="E" disabled onclick="saveProgress()"> e) 30 V e 2 A</label>
         </div>
       </div>
 
@@ -292,11 +298,11 @@
           Aplicando a Lei de Kirchhoff para Tensão (LKT), o valor da queda de tensão v2 sobre o resistor R2 é:
         </div>
         <div class="options">
-          <label><input type="radio" name="q6" value="A" disabled onclick="saveProgress()"> a) 16 V</label>
-          <label><input type="radio" name="q6" value="B" disabled onclick="saveProgress()"> b) 28 V</label>
-          <label><input type="radio" name="q6" value="C" disabled onclick="saveProgress()"> c) 52 V</label>
-          <label><input type="radio" name="q6" value="D" disabled onclick="saveProgress()"> d) 64 V</label>
-          <label><input type="radio" name="q6" value="E" disabled onclick="saveProgress()"> e) 76 V</label>
+          <label class="disabled-label"><input type="radio" name="q6" value="A" disabled onclick="saveProgress()"> a) 16 V</label>
+          <label class="disabled-label"><input type="radio" name="q6" value="B" disabled onclick="saveProgress()"> b) 28 V</label>
+          <label class="disabled-label"><input type="radio" name="q6" value="C" disabled onclick="saveProgress()"> c) 52 V</label>
+          <label class="disabled-label"><input type="radio" name="q6" value="D" disabled onclick="saveProgress()"> d) 64 V</label>
+          <label class="disabled-label"><input type="radio" name="q6" value="E" disabled onclick="saveProgress()"> e) 76 V</label>
         </div>
       </div>
 
@@ -304,11 +310,11 @@
       <div class="question-card">
         <div class="question-title">QUESTÃO 7 (Divisor de Tensão sob Carga)<br>Um circuito divisor de tensão simples é constituído por uma fonte de V_S = 24 V e dois resistores em série, R1 = 4 k-ohms e R2 = 12 k-ohms. Uma carga RL = 12 k-ohms é conectada em paralelo com o resistor R2.<br><br>A tensão V_out sobre a carga RL com o circuito carregado é:</div>
         <div class="options">
-          <label><input type="radio" name="q7" value="A" disabled onclick="saveProgress()"> a) 18 V</label>
-          <label><input type="radio" name="q7" value="B" disabled onclick="saveProgress()"> b) 14,4 V</label>
-          <label><input type="radio" name="q7" value="C" disabled onclick="saveProgress()"> c) 12,0 V</label>
-          <label><input type="radio" name="q7" value="D" disabled onclick="saveProgress()"> d) 9,6 V</label>
-          <label><input type="radio" name="q7" value="E" disabled onclick="saveProgress()"> e) 6,0 V</label>
+          <label class="disabled-label"><input type="radio" name="q7" value="A" disabled onclick="saveProgress()"> a) 18 V</label>
+          <label class="disabled-label"><input type="radio" name="q7" value="B" disabled onclick="saveProgress()"> b) 14,4 V</label>
+          <label class="disabled-label"><input type="radio" name="q7" value="C" disabled onclick="saveProgress()"> c) 12,0 V</label>
+          <label class="disabled-label"><input type="radio" name="q7" value="D" disabled onclick="saveProgress()"> d) 9,6 V</label>
+          <label class="disabled-label"><input type="radio" name="q7" value="E" disabled onclick="saveProgress()"> e) 6,0 V</label>
         </div>
       </div>
 
@@ -316,11 +322,11 @@
       <div class="question-card">
         <div class="question-title">QUESTÃO 8 (Divisor de Corrente Triplo e Potência)<br>Três resistores R1 = 10 ohms, R2 = 20 ohms e R3 = 60 ohms estão conectados em paralelo e alimentados por uma fonte de corrente constante de I_T = 18 A.<br><br>Qual é a potência dissipada exclusivamente no resistor R3?</div>
         <div class="options">
-          <label><input type="radio" name="q8" value="A" disabled onclick="saveProgress()"> a) 194,4 W</label>
-          <label><input type="radio" name="q8" value="B" disabled onclick="saveProgress()"> b) 432 W</label>
-          <label><input type="radio" name="q8" value="C" disabled onclick="saveProgress()"> c) 720 W</label>
-          <label><input type="radio" name="q8" value="D" disabled onclick="saveProgress()"> d) 120 W</label>
-          <label><input type="radio" name="q8" value="E" disabled onclick="saveProgress()"> e) 240 W</label>
+          <label class="disabled-label"><input type="radio" name="q8" value="A" disabled onclick="saveProgress()"> a) 194,4 W</label>
+          <label class="disabled-label"><input type="radio" name="q8" value="B" disabled onclick="saveProgress()"> b) 432 W</label>
+          <label class="disabled-label"><input type="radio" name="q8" value="C" disabled onclick="saveProgress()"> c) 720 W</label>
+          <label class="disabled-label"><input type="radio" name="q8" value="D" disabled onclick="saveProgress()"> d) 120 W</label>
+          <label class="disabled-label"><input type="radio" name="q8" value="E" disabled onclick="saveProgress()"> e) 240 W</label>
         </div>
       </div>
 
@@ -328,11 +334,11 @@
       <div class="question-card">
         <div class="question-title">QUESTÃO 9 (Redução de Circuito e Divisor de Corrente)<br>Um circuito é composto por uma fonte de corrente contínua I_S = 10 A alimentando uma associação em paralelo. De um lado temos um resistor R1 = 12 ohms; do outro lado, temos um ramo contendo dois resistores em série, R2 = 4 ohms e R3 = 8 ohms.<br><br>A corrente que passa pelo resistor R1 e a corrente que passa pelo resistor R3 são, respectivamente:</div>
         <div class="options">
-          <label><input type="radio" name="q9" value="A" disabled onclick="saveProgress()"> a) 5 A e 5 A</label>
-          <label><input type="radio" name="q9" value="B" disabled onclick="saveProgress()"> b) 2,5 A e 7,5 A</label>
-          <label><input type="radio" name="q9" value="C" disabled onclick="saveProgress()"> c) 6,67 A e 3,33 A</label>
-          <label><input type="radio" name="q9" value="D" disabled onclick="saveProgress()"> d) 7,5 A e 2,5 A</label>
-          <label><input type="radio" name="q9" value="E" disabled onclick="saveProgress()"> e) 8 A e 2 A</label>
+          <label class="disabled-label"><input type="radio" name="q9" value="A" disabled onclick="saveProgress()"> a) 5 A e 5 A</label>
+          <label class="disabled-label"><input type="radio" name="q9" value="B" disabled onclick="saveProgress()"> b) 2,5 A e 7,5 A</label>
+          <label class="disabled-label"><input type="radio" name="q9" value="C" disabled onclick="saveProgress()"> c) 6,67 A e 3,33 A</label>
+          <label class="disabled-label"><input type="radio" name="q9" value="D" disabled onclick="saveProgress()"> d) 7,5 A e 2,5 A</label>
+          <label class="disabled-label"><input type="radio" name="q9" value="E" disabled onclick="saveProgress()"> e) 8 A e 2 A</label>
         </div>
       </div>
 
@@ -350,11 +356,11 @@
           O valor da resistência equivalente R_AB é:
         </div>
         <div class="options">
-          <label><input type="radio" name="q10" value="A" disabled onclick="saveProgress()"> a) 10 ohms</label>
-          <label><input type="radio" name="q10" value="B" disabled onclick="saveProgress()"> b) 15 ohms</label>
-          <label><input type="radio" name="q10" value="C" disabled onclick="saveProgress()"> c) 20 ohms</label>
-          <label><input type="radio" name="q10" value="D" disabled onclick="saveProgress()"> d) 25 ohms</label>
-          <label><input type="radio" name="q10" value="E" disabled onclick="saveProgress()"> e) 8 ohms</label>
+          <label class="disabled-label"><input type="radio" name="q10" value="A" disabled onclick="saveProgress()"> a) 10 ohms</label>
+          <label class="disabled-label"><input type="radio" name="q10" value="B" disabled onclick="saveProgress()"> b) 15 ohms</label>
+          <label class="disabled-label"><input type="radio" name="q10" value="C" disabled onclick="saveProgress()"> c) 20 ohms</label>
+          <label class="disabled-label"><input type="radio" name="q10" value="D" disabled onclick="saveProgress()"> d) 25 ohms</label>
+          <label class="disabled-label"><input type="radio" name="q10" value="E" disabled onclick="saveProgress()"> e) 8 ohms</label>
         </div>
       </div>
 
@@ -367,8 +373,9 @@
 
     let trocasDeTela = parseInt(localStorage.getItem("trocasDeTela") || "0");
     let isSubmitted = false;
+    let lastSwitchTime = 0;
 
-    // Bloqueia a tela de imediato se a prova já tiver sido enviada
+    // Se já foi enviada, bloqueia a tela
     if (localStorage.getItem("provaEnviada") === "true") {
       showBlockedScreen();
     }
@@ -378,18 +385,17 @@
         <div class="blocked-screen">
           <h1 style="color: var(--accent);">Avaliação Concluída / Bloqueada</h1>
           <p>Sua prova foi enviada e registrada no sistema.</p>
-          <p>Não é possível realizar novas tentativas ou recarregar o formulário.</p>
+          <p>Não é possível realizar novas tentativas.</p>
         </div>
       `;
     }
 
-    // Validação que ativa/desativa as alternativas em tempo real
+    // Ativa/desativa alternativas conforme o preenchimento do nome e matrícula
     function validateIdentification() {
       const aluno = document.getElementById("aluno").value.trim();
       const matricula = document.getElementById("matricula").value.trim();
       const radioInputs = document.querySelectorAll('.options input[type="radio"]');
 
-      // Requer pelo menos 3 caracteres no nome e 2 na matrícula
       const isValid = aluno.length >= 3 && matricula.length >= 2;
 
       radioInputs.forEach(input => {
@@ -406,11 +412,10 @@
       }
     }
 
-    // Monitora a digitação nos campos de identificação
     document.getElementById("aluno").addEventListener("input", validateIdentification);
     document.getElementById("matricula").addEventListener("input", validateIdentification);
 
-    // Salva o progresso continuamente
+    // Salva respostas continuamente
     function saveProgress() {
       const aluno = document.getElementById("aluno").value;
       const matricula = document.getElementById("matricula").value;
@@ -427,19 +432,44 @@
       localStorage.setItem("trocasDeTela", trocasDeTela.toString());
     }
 
-    // Detecta troca de aba/tela no tablet e computador
-    document.addEventListener("visibilitychange", function() {
-      if (document.hidden && !isSubmitted) {
+    // Função unificada para registrar a saída da tela
+    function registerScreenSwitch() {
+      if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
+
+      const now = Date.now();
+      // Previne múltiplos registros em menos de 1 segundo (caso o tablet filtre blur e visibilitychange juntos)
+      if (now - lastSwitchTime > 1000) {
         trocasDeTela++;
+        lastSwitchTime = now;
         localStorage.setItem("trocasDeTela", trocasDeTela.toString());
-      } else if (!document.hidden && trocasDeTela > 0) {
-        const alertBox = document.getElementById("alertBox");
-        alertBox.style.display = "block";
-        alertBox.innerText = `⚠️ Atenção: Troca de tela detectada! (Total: ${trocasDeTela})`;
+        showAlertBox();
+      }
+    }
+
+    // Exibe o banner flutuante no topo
+    function showAlertBox() {
+      const alertBox = document.getElementById("alertBox");
+      alertBox.style.display = "block";
+      alertBox.innerHTML = `⚠️ ATENÇÃO: Troca de tela/aplicativo detectada! Total: ${trocasDeTela}`;
+      
+      // Esconde o aviso automaticamente após 6 segundos
+      setTimeout(() => {
+        alertBox.style.display = "none";
+      }, 6000);
+    }
+
+    // Eventos combinados para garantir detecção em tablets
+    document.addEventListener("visibilitychange", function() {
+      if (document.hidden) {
+        registerScreenSwitch();
       }
     });
 
-    // Função central para envio dos dados
+    window.addEventListener("blur", function() {
+      registerScreenSwitch();
+    });
+
+    // Função de envio do formulário
     function submitResults(isForced = false, tentativaAtualizacao = "NÃO") {
       if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
 
@@ -496,7 +526,7 @@
       submitResults(false, "NÃO");
     }
 
-    // Eventos de saída/atualização da página
+    // Trava para capturar atualizações de página
     window.addEventListener("beforeunload", function (e) {
       if (!isSubmitted && localStorage.getItem("provaEnviada") !== "true") {
         submitResults(true, "SIM");
@@ -512,7 +542,6 @@
       }
     });
 
-    // Roda uma verificação inicial caso haja preenchimento automático pelo navegador
     validateIdentification();
   </script>
 </body>
