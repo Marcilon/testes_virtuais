@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Verificação de Aprendizagem - Prof. Marcilon Fonseca</title>
+  <title>Prova N1 - 2026-2 - Fundamentos de Circuitos - PUC Goiás</title>
   
   <style>
     * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
@@ -18,7 +19,7 @@
     .setup-box input:focus { border-color: #2b6cb0; }
 
     .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    .question { font-weight: bold; color: #1a202c; margin-bottom: 12px; font-size: 14px; line-height: 1.4; }
+    .question { font-weight: bold; color: #1a202c; margin-bottom: 12px; font-size: 14px; line-height: 1.4; white-space: pre-line; }
     
     .option-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding: 6px; border-radius: 6px; background: #f8fafc; transition: opacity 0.3s; }
     .option-text { font-size: 13px; color: #2d3748; flex: 1; padding-right: 8px; }
@@ -44,8 +45,8 @@
 <body>
 
   <div id="main-content">
-    <h2 id="quiz-title">Avaliação de Desempenho</h2>
-    <p class="sub" id="quiz-subtitle">Responda raspando a alternativa escolhida</p>
+    <h2 id="quiz-title">Prova N1 - 2026-2</h2>
+    <p class="sub" id="quiz-subtitle">Fundamentos de Circuitos - PUC Goiás | Prof. Marcilon Fonseca</p>
 
     <div class="setup-box">
       <label for="studentName">Nome Completo do Aluno:</label>
@@ -64,47 +65,117 @@
     const powerAutomateUrl = "https://default73319f4289084b899f8d558cf4d5d7.76.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/12/workflows/908fa338e2e04870adda5272b92a467e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=eN2PEGlrN6zSvv9MMwXUbMVBCHOeSOJ5G24_IXOZruM";
 
     const quizConfig = {
-      title: "Verificação de Aprendizagem - Circuitos I",
-      subtitle: "Análise de Malhas e Leis de Kirchhoff",
+      title: "Prova N1 - 2026-2",
+      subtitle: "Fundamentos de Circuitos - PUC Goiás | Prof. Marcilon Fonseca",
       questions: [
         {
           id: 1,
-          title: "1) Na Análise de Malhas, o que é uma corrente de malha?",
+          title: "1) Um resistor de carbono possui valor nominal R = 120 Ω e potência máxima suportada de 0,5 W (1/2 W). Qual é a máxima tensão contínua V que pode ser aplicada aos terminais deste resistor sem exceder a sua capacidade de dissipação de potência?",
           options: [
-            { letter: "A", text: "A corrente real medida por um amperímetro.", correct: false },
-            { letter: "B", text: "Uma corrente fictícia que circula em um laço fechado sem laços internos.", correct: true },
-            { letter: "C", text: "A soma de todas as correntes dos nós.", correct: false },
-            { letter: "D", text: "A corrente total fornecida pela fonte principal.", correct: false }
+            { letter: "A", text: "6 V", correct: false },
+            { letter: "B", text: "7,75 V", correct: true },
+            { letter: "C", text: "12 V", correct: false },
+            { letter: "D", text: "24 V", correct: false },
+            { letter: "E", text: "60 V", correct: false }
           ]
         },
         {
           id: 2,
-          title: "2) Um resistor R12 é compartilhado entre a Malha 1 (I1) e a Malha 2 (I2), ambas no sentido horário. Qual a queda de tensão em R12 na equação da Malha 1?",
+          title: "2) Considere um nó onde a tensão é mantida em V_nodo = 24 V em relação à referência. Conectados a esse nó temos um resistor de 4 Ω ligado ao terra e uma fonte de corrente dependente que injeta no nó uma corrente i_dep = 0,5 * Vx (onde Vx = 24 V é a tensão sobre o resistor de 4 Ω). A potência absorvida pelo resistor de 4 Ω e a corrente injetada pela fonte dependente são, respectivamente:",
           options: [
-            { letter: "A", text: "R12 * (I1 + I2)", correct: false },
-            { letter: "B", text: "R12 * (I2 - I1)", correct: false },
-            { letter: "C", text: "R12 * (I1 - I2)", correct: true },
-            { letter: "D", text: "R12 * I1", correct: false }
+            { letter: "A", text: "144 W e 12 A", correct: true },
+            { letter: "B", text: "144 W e 6 A", correct: false },
+            { letter: "C", text: "72 W e 12 A", correct: false },
+            { letter: "D", text: "576 W e 24 A", correct: false },
+            { letter: "E", text: "288 W e 12 A", correct: false }
           ]
         },
         {
           id: 3,
-          title: "3) Ao percorrer uma malha no sentido da corrente e passar de (-) para (+) em uma fonte de tensão, como ela entra na LKT?",
+          title: "3) Três resistores R1 = 10 Ω, R2 = 15 Ω e R3 = 25 Ω estão conectados em série com uma fonte de tensão contínua de V_S = 100 V. A queda de tensão sobre o resistor R2 e a potência fornecida pela fonte são, respectivamente:",
           options: [
-            { letter: "A", text: "Com sinal negativo (-Vs).", correct: true },
-            { letter: "B", text: "Com sinal positivo (+Vs).", correct: false },
-            { letter: "C", text: "Multiplicada pela resistência da malha.", correct: false },
-            { letter: "D", text: "Ela é ignorada na equação.", correct: false }
+            { letter: "A", text: "15 V e 100 W", correct: false },
+            { letter: "B", text: "30 V e 200 W", correct: true },
+            { letter: "C", text: "30 V e 100 W", correct: false },
+            { letter: "D", text: "50 V e 200 W", correct: false },
+            { letter: "E", text: "15 V e 50 W", correct: false }
           ]
         },
         {
           id: 4,
-          title: "4) Na representação matricial [R][I] = [V], o que representam os elementos fora da diagonal principal (ex: R12)?",
+          title: "4) Um circuito de duas malhas possui uma fonte independente de tensão de 30 V na malha 1, um resistor R1 = 5 Ω exclusivo da malha 1, um resistor R2 = 10 Ω compartilhado entre a malha 1 e a malha 2, e um resistor R3 = 10 Ω exclusivo da malha 2. Não há fontes na malha 2. As correntes de malha i1 e i2 (ambas no sentido horário) são, respectivamente:",
           options: [
-            { letter: "A", text: "A soma de todos os resistores do circuito.", correct: false },
-            { letter: "B", text: "O valor positivo do resistor do ramo principal.", correct: false },
-            { letter: "C", text: "O valor negativo da resistência compartilhada entre as malhas.", correct: true },
-            { letter: "D", text: "A potência dissipada na malha.", correct: false }
+            { letter: "A", text: "i1 = 3 A; i2 = 1 A", correct: false },
+            { letter: "B", text: "i1 = 2 A; i2 = 1 A", correct: false },
+            { letter: "C", text: "i1 = 2 A; i2 = 2 A", correct: false },
+            { letter: "D", text: "i1 = 2,4 A; i2 = 1,2 A", correct: true },
+            { letter: "E", text: "i1 = 3 A; i2 = 1,5 A", correct: false }
+          ]
+        },
+        {
+          id: 5,
+          title: "5) Um nó A é alimentado por uma fonte de corrente independente de 10 A. Deste nó partem três ramos para a referência: Ramo 1 (resistor de 20 Ω), Ramo 2 (resistor de 30 Ω) e Ramo 3 (associação em série de 10 Ω e 5 Ω). A tensão V_A no nó A e a corrente no Ramo 3 são, respectivamente:",
+          options: [
+            { letter: "A", text: "60 V e 4 A", correct: true },
+            { letter: "B", text: "50 V e 3,33 A", correct: false },
+            { letter: "C", text: "100 V e 6,67 A", correct: false },
+            { letter: "D", text: "120 V e 8 A", correct: false },
+            { letter: "E", text: "30 V e 2 A", correct: false }
+          ]
+        },
+        {
+          id: 6,
+          title: "6) Considere um laço fechado percorrido no sentido horário contendo: uma fonte de 40 V (+40 V de elevação), um resistor R1 com queda v1 = 12 V, uma fonte dependente fornecendo elevação v_dep = 2 * v1, e um resistor R2 com queda de tensão v2. Pela LKT, a queda de tensão v2 sobre R2 é:",
+          options: [
+            { letter: "A", text: "16 V", correct: false },
+            { letter: "B", text: "28 V", correct: false },
+            { letter: "C", text: "52 V", correct: false },
+            { letter: "D", text: "64 V", correct: true },
+            { letter: "E", text: "76 V", correct: false }
+          ]
+        },
+        {
+          id: 7,
+          title: "7) Um circuito divisor de tensão tem fonte V_S = 24 V e dois resistores em série, R1 = 4 kΩ e R2 = 12 kΩ. Uma carga RL = 12 kΩ é conectada em paralelo com R2. A tensão V_out sobre a carga RL com o circuito carregado é:",
+          options: [
+            { letter: "A", text: "18 V", correct: false },
+            { letter: "B", text: "14,4 V", correct: true },
+            { letter: "C", text: "12,0 V", correct: false },
+            { letter: "D", text: "9,6 V", correct: false },
+            { letter: "E", text: "6,0 V", correct: false }
+          ]
+        },
+        {
+          id: 8,
+          title: "8) Três resistores R1 = 10 Ω, R2 = 20 Ω e R3 = 60 Ω estão conectados em paralelo e alimentados por uma fonte de corrente constante de I_T = 18 A. Qual é a potência dissipada exclusivamente no resistor R3?",
+          options: [
+            { letter: "A", text: "194,4 W", correct: true },
+            { letter: "B", text: "432 W", correct: false },
+            { letter: "C", text: "720 W", correct: false },
+            { letter: "D", text: "120 W", correct: false },
+            { letter: "E", text: "240 W", correct: false }
+          ]
+        },
+        {
+          id: 9,
+          title: "9) Um circuito é composto por uma fonte de corrente contínua I_S = 10 A alimentando uma associação em paralelo: no ramo 1 temos R1 = 12 Ω; no ramo 2 temos dois resistores em série, R2 = 4 Ω e R3 = 8 Ω. A corrente em R1 e a corrente em R3 são, respectivamente:",
+          options: [
+            { letter: "A", text: "5 A e 5 A", correct: true },
+            { letter: "B", text: "2,5 A e 7,5 A", correct: false },
+            { letter: "C", text: "6,67 A e 3,33 A", correct: false },
+            { letter: "D", text: "7,5 A e 2,5 A", correct: false },
+            { letter: "E", text: "8 A e 2 A", correct: false }
+          ]
+        },
+        {
+          id: 10,
+          title: "10) Determine a resistência equivalente R_AB entre os terminais A e B de uma rede com: dois resistores de 12 Ω em paralelo entre si (Grupo 1); o Grupo 1 em série com um resistor de 4 Ω (Grupo 2); o Grupo 2 em paralelo com um resistor de 10 Ω (Grupo 3); e o conjunto em série com um resistor final de 5 Ω. A resistência R_AB é:",
+          options: [
+            { letter: "A", text: "10 Ω", correct: true },
+            { letter: "B", text: "15 Ω", correct: false },
+            { letter: "C", text: "20 Ω", correct: false },
+            { letter: "D", text: "25 Ω", correct: false },
+            { letter: "E", text: "8 Ω", correct: false }
           ]
         }
       ]
@@ -126,7 +197,6 @@
     // CAPTURA TENTATIVA DE SAÍDA / ATUALIZAÇÃO E REALIZA ENVIO AUTOMÁTICO
     window.addEventListener("beforeunload", function (e) {
       if (!isSubmitted) {
-        // Envio síncrono via Beacon/Fetch emergencial antes da página fechar
         submitResults(true, "SIM");
         e.preventDefault();
         e.returnValue = "Atenção: Ao sair ou recarregar, seu teste será enviado no estado atual e registrado no sistema!";
@@ -266,7 +336,6 @@
 
       isSubmitted = true;
 
-      // Cria a data/hora exata do envio no formato YYYY-MM-DD HH:mm:ss
       const now = new Date();
       const dataHora = now.toISOString().replace('T', ' ').substring(0, 19);
 
@@ -279,7 +348,6 @@
         TentativaAtualizacao: reloadAttempt
       };
 
-      // Utiliza navigator.sendBeacon caso seja uma saída de página para garantir o envio
       if (isForced && navigator.sendBeacon) {
         const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
         navigator.sendBeacon(powerAutomateUrl, blob);
@@ -293,9 +361,11 @@
       })
       .then(response => {
         if (response.ok) {
+          localStorage.removeItem("prova_circuitos_bloqueada");
+
           document.getElementById("main-content").innerHTML = `
             <div style="text-align:center; color:#155724; background:#d4edda; padding:30px; border-radius:8px; margin-top: 30px;">
-              <h2>✅ Teste Enviado com Sucesso!</h2>
+              <h2>✅ Prova Enviada com Sucesso!</h2>
               <p>Obrigado, <strong>${name}</strong>. Suas respostas foram registradas.</p>
             </div>
           `;
