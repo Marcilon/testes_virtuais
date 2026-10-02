@@ -165,11 +165,16 @@
       border: 1px solid #ffeeba;
       font-size: 14px;
     }
+
+    .blocked-screen {
+      text-align: center;
+      padding: 50px 20px;
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" id="mainContainer">
     <header>
       <h1>Pontifícia Universidade Católica de Goiás</h1>
       <h2>Fundamentos de Circuitos Elétricos — Avaliação Objetiva - Prof. Marcilon Fonseca</h2>
@@ -193,119 +198,119 @@
 
       <!-- Questão 1 -->
       <div class="question-card">
-        <div class="question-title">1. Um resistor de 10 Ω é submetido a uma tensão de 20 V. Qual é a corrente elétrica que circula por ele?</div>
+        <div class="question-title">1. Questão 1</div>
         <div class="options">
-          <label><input type="radio" name="q1" value="A"> A) 0,5 A</label>
-          <label><input type="radio" name="q1" value="B"> B) 2,0 A</label>
-          <label><input type="radio" name="q1" value="C"> C) 200 A</label>
-          <label><input type="radio" name="q1" value="D"> D) 10 A</label>
+          <label><input type="radio" name="q1" value="A"> A</label>
+          <label><input type="radio" name="q1" value="B"> B</label>
+          <label><input type="radio" name="q1" value="C"> C</label>
+          <label><input type="radio" name="q1" value="D"> D</label>
         </div>
       </div>
 
       <!-- Questão 2 -->
       <div class="question-card">
-        <div class="question-title">2. Em um circuito em série com dois resistores de 15 Ω e 25 Ω, qual é a resistência equivalente total?</div>
+        <div class="question-title">2. Questão 2</div>
         <div class="options">
-          <label><input type="radio" name="q2" value="A"> A) 40 Ω</label>
-          <label><input type="radio" name="q2" value="B"> B) 9,37 Ω</label>
-          <label><input type="radio" name="q2" value="C"> C) 10 Ω</label>
-          <label><input type="radio" name="q2" value="D"> D) 375 Ω</label>
+          <label><input type="radio" name="q2" value="A"> A</label>
+          <label><input type="radio" name="q2" value="B"> B</label>
+          <label><input type="radio" name="q2" value="C"> C</label>
+          <label><input type="radio" name="q2" value="D"> D</label>
         </div>
       </div>
 
       <!-- Questão 3 -->
       <div class="question-card">
-        <div class="question-title">3. Dois resistores de 100 Ω estão conectados em paralelo. A resistência equivalente desse arranjo é:</div>
+        <div class="question-title">3. Questão 3</div>
         <div class="options">
-          <label><input type="radio" name="q3" value="A"> A) 200 Ω</label>
-          <label><input type="radio" name="q3" value="B"> B) 50 Ω</label>
-          <label><input type="radio" name="q3" value="C"> C) 100 Ω</label>
-          <label><input type="radio" name="q3" value="D"> D) 25 Ω</label>
+          <label><input type="radio" name="q3" value="A"> A</label>
+          <label><input type="radio" name="q3" value="B"> B</label>
+          <label><input type="radio" name="q3" value="C"> C</label>
+          <label><input type="radio" name="q3" value="D"> D</label>
         </div>
       </div>
 
       <!-- Questão 4 -->
       <div class="question-card">
-        <div class="question-title">4. A Lei de Kirchhoff das Correntes (LCK) fundamenta-se em qual princípio da física?</div>
+        <div class="question-title">4. Questão 4</div>
         <div class="options">
-          <label><input type="radio" name="q4" value="A"> A) Conservação do Momento Linear</label>
-          <label><input type="radio" name="q4" value="B"> B) Conservação de Energia</label>
-          <label><input type="radio" name="q4" value="C"> C) Lei de Indução de Faraday</label>
-          <label><input type="radio" name="q4" value="D"> D) Conservação da Carga Elétrica</label>
+          <label><input type="radio" name="q4" value="A"> A</label>
+          <label><input type="radio" name="q4" value="B"> B</label>
+          <label><input type="radio" name="q4" value="C"> C</label>
+          <label><input type="radio" name="q4" value="D"> D</label>
         </div>
       </div>
 
       <!-- Questão 5 -->
       <div class="question-card">
-        <div class="question-title">5. A Lei de Kirchhoff das Tensões (LKT) estabelece que a soma algébrica das diferenças de potencial em uma malha fechada é igual a:</div>
+        <div class="question-title">5. Questão 5</div>
         <div class="options">
-          <label><input type="radio" name="q5" value="A"> A) Zero</label>
-          <label><input type="radio" name="q5" value="B"> B) Tensão da Fonte Principal</label>
-          <label><input type="radio" name="q5" value="C"> C) Corrente Total x Resistência</label>
-          <label><input type="radio" name="q5" value="D"> D) Infinito</label>
+          <label><input type="radio" name="q5" value="A"> A</label>
+          <label><input type="radio" name="q5" value="B"> B</label>
+          <label><input type="radio" name="q5" value="C"> C</label>
+          <label><input type="radio" name="q5" value="D"> D</label>
         </div>
       </div>
 
       <!-- Questão 6 -->
       <div class="question-card">
-        <div class="question-title">6. Um elemento passivo consome uma corrente de 3 A quando aplicado 12 V. Qual é a potência dissipada por ele?</div>
+        <div class="question-title">6. Questão 6</div>
         <div class="options">
-          <label><input type="radio" name="q6" value="A"> A) 4 W</label>
-          <label><input type="radio" name="q6" value="B"> B) 15 W</label>
-          <label><input type="radio" name="q6" value="C"> C) 0,25 W</label>
-          <label><input type="radio" name="q6" value="D"> D) 36 W</label>
+          <label><input type="radio" name="q6" value="A"> A</label>
+          <label><input type="radio" name="q6" value="B"> B</label>
+          <label><input type="radio" name="q6" value="C"> C</label>
+          <label><input type="radio" name="q6" value="D"> D</label>
         </div>
       </div>
 
       <!-- Questão 7 -->
       <div class="question-card">
-        <div class="question-title">7. O Teorema de Thévenin estabelece que qualquer circuito linear de dois terminais pode ser substituído por:</div>
+        <div class="question-title">7. Questão 7</div>
         <div class="options">
-          <label><input type="radio" name="q7" value="A"> A) Uma fonte de corrente em paralelo com um resistor</label>
-          <label><input type="radio" name="q7" value="B"> B) Uma fonte de tensão em série com um resistor</label>
-          <label><input type="radio" name="q7" value="C"> C) Apenas um resistor equivalente em paralelo</label>
-          <label><input type="radio" name="q7" value="D"> D) Uma fonte de tensão em paralelo com um capacitor</label>
+          <label><input type="radio" name="q7" value="A"> A</label>
+          <label><input type="radio" name="q7" value="B"> B</label>
+          <label><input type="radio" name="q7" value="C"> C</label>
+          <label><input type="radio" name="q7" value="D"> D</label>
         </div>
       </div>
 
       <!-- Questão 8 -->
       <div class="question-card">
-        <div class="question-title">8. No Teorema de Norton, a fonte de corrente equivalente ($I_N$) corresponde à:</div>
+        <div class="question-title">8. Questão 8</div>
         <div class="options">
-          <label><input type="radio" name="q8" value="A"> A) Corrente de curto-circuito entre os terminais</label>
-          <label><input type="radio" name="q8" value="B"> B) Corrente em circuito aberto nos terminais</label>
-          <label><input type="radio" name="q8" value="C"> C) Tensão de Thévenin dividida pela resistência de carga</label>
-          <label><input type="radio" name="q8" value="D"> D) Soma das correntes de todas as fontes independentes</label>
+          <label><input type="radio" name="q8" value="A"> A</label>
+          <label><input type="radio" name="q8" value="B"> B</label>
+          <label><input type="radio" name="q8" value="C"> C</label>
+          <label><input type="radio" name="q8" value="D"> D</label>
         </div>
       </div>
 
-      <!-- Questão 9 -->
+      <!-- Questão 9 (Raspadinha) -->
       <div class="question-card">
-        <div class="question-title">9. Raspe para revelar o parâmetro da Questão 9:</div>
+        <div class="question-title">9. Questão 9</div>
         <div class="scratch-card">
-          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar a pergunta</div>
-          <p><strong>Questão 9:</strong> Em um circuito de Corrente Contínua (CC) em regime permanente, como se comporta um capacitor ideal?</p>
+          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar</div>
+          <p>Conteúdo da Questão 9...</p>
         </div>
         <div class="options" style="margin-top:15px;">
-          <label><input type="radio" name="q9" value="A"> A) Como um circuito aberto</label>
-          <label><input type="radio" name="q9" value="B"> B) Como um curto-circuito</label>
-          <label><input type="radio" name="q9" value="C"> C) Como um resistor de valor nulo</label>
-          <label><input type="radio" name="q9" value="D"> D) Como uma fonte de tensão ideal</label>
+          <label><input type="radio" name="q9" value="A"> A</label>
+          <label><input type="radio" name="q9" value="B"> B</label>
+          <label><input type="radio" name="q9" value="C"> C</label>
+          <label><input type="radio" name="q9" value="D"> D</label>
         </div>
       </div>
 
-      <!-- Questão 10 -->
+      <!-- Questão 10 (Raspadinha) -->
       <div class="question-card">
-        <div class="question-title">10. Raspe para revelar o parâmetro da Questão 10:</div>
+        <div class="question-title">10. Questão 10</div>
         <div class="scratch-card">
-          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar a pergunta</div>
-          <p><strong>Questão 10:</strong> Em um circuito de Corrente Contínua (CC) em regime permanente, como se comporta um indutor ideal?</p>
+          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar</div>
+          <p>Conteúdo da Questão 10...</p>
         </div>
         <div class="options" style="margin-top:15px;">
-          <label><input type="radio" name="q10" value="A"> A) Como um curto-circuito</label>
-          <label><input type="radio" name="q10" value="B"> B) Como um circuito aberto</label>
-          <label><input type="radio" name="q10" value="C"> C) Como uma fonte de corrente independente</label>
-          <label><input type="radio" name="q10" value="D"> D) Como um resistor de alta resistência</label>
+          <label><input type="radio" name="q10" value="A"> A</label>
+          <label><input type="radio" name="q10" value="B"> B</label>
+          <label><input type="radio" name="q10" value="C"> C</label>
+          <label><input type="radio" name="q10" value="D"> D</label>
         </div>
       </div>
 
@@ -314,12 +319,23 @@
   </div>
 
   <script>
-    // URL gerada no seu fluxo do Power Automate (Substitua entre as aspas abaixo)
     const powerAutomateUrl = "https://default73319f4289084b899f8d558cf4d5d7.76.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/20/workflows/0d21e5d297d74711b3867ad0c140c99a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=MKLIJzd6zjtJQxQcvYj14EskOrG8dx1GtlDdLiCyCL8";
+
+    // Verifica de imediato se o aluno já fez o envio nesta máquina/tablet
+    if (localStorage.getItem("provaEnviada") === "true") {
+      document.getElementById("mainContainer").innerHTML = `
+        <div class="blocked-screen">
+          <h1 style="color: var(--accent);">Avaliação Concluída / Bloqueada</h1>
+          <p>Sua prova já foi enviada e registrada no sistema.</p>
+          <p>Não é possível realizar novas tentativas ou recarregar o formulário.</p>
+        </div>
+      `;
+    }
+
     let trocasDeTela = 0;
     let isSubmitted = false;
 
-    // Detecta mudança de aba / saída da tela no Desktop e Celular
+    // Detecta mudança de aba / saída da tela
     document.addEventListener("visibilitychange", function() {
       if (document.hidden && !isSubmitted) {
         trocasDeTela++;
@@ -328,19 +344,17 @@
 
     // Função centralizada para enviar os resultados
     function submitResults(isForced = false, tentativaAtualizacao = "NÃO") {
-      if (isSubmitted) return;
+      if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
 
       const aluno = document.getElementById("aluno").value || "Aluno Não Identificado";
       const matricula = document.getElementById("matricula").value || "Sem Matrícula";
 
-      // Coleta de respostas
       const respostas = {};
       for (let i = 1; i <= 10; i++) {
         const selected = document.querySelector(`input[name="q${i}"]:checked`);
         respostas[i] = selected ? selected.value : "N/A";
       }
 
-      // Monta o payload
       const payload = {
         Data: new Date().toLocaleString("pt-BR"),
         Aluno: aluno,
@@ -351,13 +365,12 @@
       };
 
       isSubmitted = true;
+      localStorage.setItem("provaEnviada", "true");
 
-      // Envio ultra-rápido via Beacon (ideal para saída/recarregamento)
       if (navigator.sendBeacon) {
         const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
         navigator.sendBeacon(powerAutomateUrl, blob);
       } else {
-        // Fallback síncrono/padrão caso o navegador não suporte beacon
         fetch(powerAutomateUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -368,11 +381,10 @@
 
       if (!isForced) {
         alert("Sua avaliação foi enviada com sucesso!");
-        window.location.reload();
+        location.reload();
       }
     }
 
-    // Envio manual ao clicar no botão
     function manualSubmit() {
       const aluno = document.getElementById("aluno").value;
       const matricula = document.getElementById("matricula").value;
@@ -385,19 +397,19 @@
       submitResults(false, "NÃO");
     }
 
-    // Evento otimizado para celulares e tablets (Safari / Chrome Mobile) ao atualizar ou fechar aba
-    window.addEventListener("pagehide", function (e) {
+    // Captura recarregamento ou fechamento no Tablet / Mobile
+    window.addEventListener("pagehide", function () {
       if (!isSubmitted) {
         submitResults(true, "SIM");
       }
     });
 
-    // Evento de travamento/aviso para navegadores Desktop
+    // Captura recarregamento no Desktop
     window.addEventListener("beforeunload", function (e) {
       if (!isSubmitted) {
         submitResults(true, "SIM");
         e.preventDefault();
-        e.returnValue = "Atenção: Seu teste será enviado no estado atual e registrado!";
+        e.returnValue = "Atenção: Seu teste será enviado e encerrado!";
         return e.returnValue;
       }
     });
