@@ -47,6 +47,12 @@
       font-size: 24px;
     }
 
+    h2 {
+      font-size: 18px;
+      color: #555;
+      margin: 0;
+    }
+
     .user-info {
       display: flex;
       gap: 15px;
@@ -86,6 +92,13 @@
       font-weight: bold;
       margin-bottom: 15px;
       color: var(--primary);
+      line-height: 1.4;
+    }
+
+    .question-title ul {
+      margin: 10px 0;
+      padding-left: 20px;
+      font-weight: normal;
     }
 
     .options label {
@@ -105,37 +118,6 @@
 
     .options input[type="radio"] {
       margin-right: 10px;
-    }
-
-    .scratch-card {
-      position: relative;
-      background: #e0e0e0;
-      padding: 15px;
-      border-radius: 4px;
-      margin-top: 10px;
-      user-select: none;
-    }
-
-    .scratch-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #bbb;
-      color: #555;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: opacity 0.3s;
-    }
-
-    .scratch-overlay.revealed {
-      opacity: 0;
-      pointer-events: none;
     }
 
     button.btn-submit {
@@ -177,7 +159,7 @@
   <div class="container" id="mainContainer">
     <header>
       <h1>Pontifícia Universidade Católica de Goiás</h1>
-      <h2>Fundamentos de Circuitos Elétricos — Avaliação Objetiva - Prof. Marcilon Fonseca</h2>
+      <h2>Fundamentos de Circuitos Elétricos — Avaliação Objetiva</h2>
     </header>
 
     <div class="warning-banner">
@@ -198,119 +180,158 @@
 
       <!-- Questão 1 -->
       <div class="question-card">
-        <div class="question-title">1. Questão 1</div>
+        <div class="question-title">QUESTÃO 1 (Lei de Ohm e Potência Dissipada)<br>Um resistor de carbono possui valor nominal R = 120 ohms e potência máxima suportada de 0,5 W (1/2 W). Qual é a máxima tensão contínua V que pode ser aplicada aos terminais deste resistor sem exceder a sua capacidade de dissipação de potência?</div>
         <div class="options">
-          <label><input type="radio" name="q1" value="A"> A</label>
-          <label><input type="radio" name="q1" value="B"> B</label>
-          <label><input type="radio" name="q1" value="C"> C</label>
-          <label><input type="radio" name="q1" value="D"> D</label>
+          <label><input type="radio" name="q1" value="A"> a) 6 V</label>
+          <label><input type="radio" name="q1" value="B"> b) 7,75 V</label>
+          <label><input type="radio" name="q1" value="C"> c) 12 V</label>
+          <label><input type="radio" name="q1" value="D"> d) 24 V</label>
+          <label><input type="radio" name="q1" value="E"> e) 60 V</label>
         </div>
       </div>
 
       <!-- Questão 2 -->
       <div class="question-card">
-        <div class="question-title">2. Questão 2</div>
+        <div class="question-title">
+          QUESTÃO 2 (Balanço de Potência e Fontes Dependentes)<br>
+          Considere um nó de um circuito onde se encontram elementos conectados de forma que a tensão no nó é mantida em V_nodo = 24 V em relação ao nó de referência (0 V). Conectados a esse nó temos:
+          <ul>
+            <li>Um resistor de 4 ohms em direção ao nó de referência.</li>
+            <li>Uma fonte de corrente dependente controlada por tensão que injeta no nó uma corrente i_dep = 0,5 * Vx, onde Vx é a tensão sobre o resistor de 4 ohms (Vx = 24 V).</li>
+          </ul>
+          A potência total absorvida pelo resistor de 4 ohms e a corrente total injetada pela fonte dependente são, respectivamente:
+        </div>
         <div class="options">
-          <label><input type="radio" name="q2" value="A"> A</label>
-          <label><input type="radio" name="q2" value="B"> B</label>
-          <label><input type="radio" name="q2" value="C"> C</label>
-          <label><input type="radio" name="q2" value="D"> D</label>
+          <label><input type="radio" name="q2" value="A"> a) 144 W e 12 A</label>
+          <label><input type="radio" name="q2" value="B"> b) 144 W e 6 A</label>
+          <label><input type="radio" name="q2" value="C"> c) 72 W e 12 A</label>
+          <label><input type="radio" name="q2" value="D"> d) 576 W e 24 A</label>
+          <label><input type="radio" name="q2" value="E"> e) 288 W e 12 A</label>
         </div>
       </div>
 
       <!-- Questão 3 -->
       <div class="question-card">
-        <div class="question-title">3. Questão 3</div>
+        <div class="question-title">QUESTÃO 3 (Associação em Série e LKT)<br>Três resistores R1 = 10 ohms, R2 = 15 ohms e R3 = 25 ohms estão conectados em série com uma fonte de tensão contínua de V_S = 100 V. A queda de tensão sobre o resistor R2 e a potência fornecida pela fonte são, respectivamente:</div>
         <div class="options">
-          <label><input type="radio" name="q3" value="A"> A</label>
-          <label><input type="radio" name="q3" value="B"> B</label>
-          <label><input type="radio" name="q3" value="C"> C</label>
-          <label><input type="radio" name="q3" value="D"> D</label>
+          <label><input type="radio" name="q3" value="A"> a) 15 V e 100 W</label>
+          <label><input type="radio" name="q3" value="B"> b) 30 V e 200 W</label>
+          <label><input type="radio" name="q3" value="C"> c) 30 V e 100 W</label>
+          <label><input type="radio" name="q3" value="D"> d) 50 V e 200 W</label>
+          <label><input type="radio" name="q3" value="E"> e) 15 V e 50 W</label>
         </div>
       </div>
 
       <!-- Questão 4 -->
       <div class="question-card">
-        <div class="question-title">4. Questão 4</div>
+        <div class="question-title">QUESTÃO 4 (Análise de Laços Múltiplos e LKT)<br>Um circuito de duas malhas possui uma fonte independente de tensão de 30 V na malha 1, um resistor R1 = 5 ohms exclusivo da malha 1, um resistor R2 = 10 ohms compartilhado entre a malha 1 e a malha 2, e um resistor R3 = 10 ohms exclusivo da malha 2. Não há fontes na malha 2.<br><br>As correntes de malha i1 (malha 1) e i2 (malha 2), ambas orientadas no sentido horário, são respectivamente:</div>
         <div class="options">
-          <label><input type="radio" name="q4" value="A"> A</label>
-          <label><input type="radio" name="q4" value="B"> B</label>
-          <label><input type="radio" name="q4" value="C"> C</label>
-          <label><input type="radio" name="q4" value="D"> D</label>
+          <label><input type="radio" name="q4" value="A"> a) i1 = 3 A; i2 = 1 A</label>
+          <label><input type="radio" name="q4" value="B"> b) i1 = 2 A; i2 = 1 A</label>
+          <label><input type="radio" name="q4" value="C"> c) i1 = 2 A; i2 = 2 A</label>
+          <label><input type="radio" name="q4" value="D"> d) i1 = 2,4 A; i2 = 1,2 A</label>
+          <label><input type="radio" name="q4" value="E"> e) i1 = 3 A; i2 = 1,5 A</label>
         </div>
       </div>
 
       <!-- Questão 5 -->
       <div class="question-card">
-        <div class="question-title">5. Questão 5</div>
+        <div class="question-title">
+          QUESTÃO 5 (Lei de Kirchhoff para Corrente com Resistor em Paralelo)<br>
+          Um nó A é alimentado por uma fonte de corrente independente de 10 A. Deste nó partem três ramos para o nó de referência (terra):
+          <ul>
+            <li>Ramo 1: Resistor de 20 ohms.</li>
+            <li>Ramo 2: Resistor de 30 ohms.</li>
+            <li>Ramo 3: Associação em série de um resistor de 10 ohms com outro de 5 ohms.</li>
+          </ul>
+          A tensão V_A no nó A e a corrente que atravessa o Ramo 3 são, respectivamente:
+        </div>
         <div class="options">
-          <label><input type="radio" name="q5" value="A"> A</label>
-          <label><input type="radio" name="q5" value="B"> B</label>
-          <label><input type="radio" name="q5" value="C"> C</label>
-          <label><input type="radio" name="q5" value="D"> D</label>
+          <label><input type="radio" name="q5" value="A"> a) 60 V e 4 A</label>
+          <label><input type="radio" name="q5" value="B"> b) 50 V e 3,33 A</label>
+          <label><input type="radio" name="q5" value="C"> c) 100 V e 6,67 A</label>
+          <label><input type="radio" name="q5" value="D"> d) 120 V e 8 A</label>
+          <label><input type="radio" name="q5" value="E"> e) 30 V e 2 A</label>
         </div>
       </div>
 
       <!-- Questão 6 -->
       <div class="question-card">
-        <div class="question-title">6. Questão 6</div>
+        <div class="question-title">
+          QUESTÃO 6 (Lei de Kirchhoff para Tensão - LKT em Laço Composto)<br>
+          Considere um laço fechado contendo as seguintes quedas e elevações de potencial no sentido horário:
+          <ul>
+            <li>Uma fonte de tensão de 40 V (da polaridade negativa para a positiva).</li>
+            <li>Um resistor R1 com queda de tensão v1 = 12 V.</li>
+            <li>Uma fonte de tensão dependente que fornece uma elevação de potencial de v_dep = 2 * v1.</li>
+            <li>Um resistor R2 com queda de tensão v2.</li>
+          </ul>
+          Aplicando a Lei de Kirchhoff para Tensão (LKT), o valor da queda de tensão v2 sobre o resistor R2 é:
+        </div>
         <div class="options">
-          <label><input type="radio" name="q6" value="A"> A</label>
-          <label><input type="radio" name="q6" value="B"> B</label>
-          <label><input type="radio" name="q6" value="C"> C</label>
-          <label><input type="radio" name="q6" value="D"> D</label>
+          <label><input type="radio" name="q6" value="A"> a) 16 V</label>
+          <label><input type="radio" name="q6" value="B"> b) 28 V</label>
+          <label><input type="radio" name="q6" value="C"> c) 52 V</label>
+          <label><input type="radio" name="q6" value="D"> d) 64 V</label>
+          <label><input type="radio" name="q6" value="E"> e) 76 V</label>
         </div>
       </div>
 
       <!-- Questão 7 -->
       <div class="question-card">
-        <div class="question-title">7. Questão 7</div>
+        <div class="question-title">QUESTÃO 7 (Divisor de Tensão sob Carga)<br>Um circuito divisor de tensão simples é constituído por uma fonte de V_S = 24 V e dois resistores em série, R1 = 4 k-ohms e R2 = 12 k-ohms. Uma carga RL = 12 k-ohms é conectada em paralelo com o resistor R2.<br><br>A tensão V_out sobre a carga RL com o circuito carregado é:</div>
         <div class="options">
-          <label><input type="radio" name="q7" value="A"> A</label>
-          <label><input type="radio" name="q7" value="B"> B</label>
-          <label><input type="radio" name="q7" value="C"> C</label>
-          <label><input type="radio" name="q7" value="D"> D</label>
+          <label><input type="radio" name="q7" value="A"> a) 18 V</label>
+          <label><input type="radio" name="q7" value="B"> b) 14,4 V</label>
+          <label><input type="radio" name="q7" value="C"> c) 12,0 V</label>
+          <label><input type="radio" name="q7" value="D"> d) 9,6 V</label>
+          <label><input type="radio" name="q7" value="E"> e) 6,0 V</label>
         </div>
       </div>
 
       <!-- Questão 8 -->
       <div class="question-card">
-        <div class="question-title">8. Questão 8</div>
+        <div class="question-title">QUESTÃO 8 (Divisor de Corrente Triplo e Potência)<br>Três resistores R1 = 10 ohms, R2 = 20 ohms e R3 = 60 ohms estão conectados em paralelo e alimentados por uma fonte de corrente constante de I_T = 18 A.<br><br>Qual é a potência dissipada exclusivamente no resistor R3?</div>
         <div class="options">
-          <label><input type="radio" name="q8" value="A"> A</label>
-          <label><input type="radio" name="q8" value="B"> B</label>
-          <label><input type="radio" name="q8" value="C"> C</label>
-          <label><input type="radio" name="q8" value="D"> D</label>
+          <label><input type="radio" name="q8" value="A"> a) 194,4 W</label>
+          <label><input type="radio" name="q8" value="B"> b) 432 W</label>
+          <label><input type="radio" name="q8" value="C"> c) 720 W</label>
+          <label><input type="radio" name="q8" value="D"> d) 120 W</label>
+          <label><input type="radio" name="q8" value="E"> e) 240 W</label>
         </div>
       </div>
 
-      <!-- Questão 9 (Raspadinha) -->
+      <!-- Questão 9 -->
       <div class="question-card">
-        <div class="question-title">9. Questão 9</div>
-        <div class="scratch-card">
-          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar</div>
-          <p>Conteúdo da Questão 9...</p>
-        </div>
-        <div class="options" style="margin-top:15px;">
-          <label><input type="radio" name="q9" value="A"> A</label>
-          <label><input type="radio" name="q9" value="B"> B</label>
-          <label><input type="radio" name="q9" value="C"> C</label>
-          <label><input type="radio" name="q9" value="D"> D</label>
+        <div class="question-title">QUESTÃO 9 (Redução de Circuito e Divisor de Corrente)<br>Um circuito é composto por uma fonte de corrente contínua I_S = 10 A alimentando uma associação em paralelo. De um lado temos um resistor R1 = 12 ohms; do outro lado, temos um ramo contendo dois resistores em série, R2 = 4 ohms e R3 = 8 ohms.<br><br>A corrente que passa pelo resistor R1 e a corrente que passa pelo resistor R3 são, respectivamente:</div>
+        <div class="options">
+          <label><input type="radio" name="q9" value="A"> a) 5 A e 5 A</label>
+          <label><input type="radio" name="q9" value="B"> b) 2,5 A e 7,5 A</label>
+          <label><input type="radio" name="q9" value="C"> c) 6,67 A e 3,33 A</label>
+          <label><input type="radio" name="q9" value="D"> d) 7,5 A e 2,5 A</label>
+          <label><input type="radio" name="q9" value="E"> e) 8 A e 2 A</label>
         </div>
       </div>
 
-      <!-- Questão 10 (Raspadinha) -->
+      <!-- Questão 10 -->
       <div class="question-card">
-        <div class="question-title">10. Questão 10</div>
-        <div class="scratch-card">
-          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar</div>
-          <p>Conteúdo da Questão 10...</p>
+        <div class="question-title">
+          QUESTÃO 10 (Rede Resistiva com Equivalente Combinado)<br>
+          Determine a resistência equivalente entre os terminais A e B de uma rede que contém:
+          <ul>
+            <li>Dois resistores de 12 ohms em paralelo entre si (Grupo 1).</li>
+            <li>Esse Grupo 1 está em série com um resistor de 4 ohms (Grupo 2).</li>
+            <li>Todo o conjunto (Grupo 2) está em paralelo com um resistor de 10 ohms (Grupo 3).</li>
+            <li>O arranjo resultante está em série com um resistor final de 5 ohms.</li>
+          </ul>
+          O valor da resistência equivalente R_AB é:
         </div>
-        <div class="options" style="margin-top:15px;">
-          <label><input type="radio" name="q10" value="A"> A</label>
-          <label><input type="radio" name="q10" value="B"> B</label>
-          <label><input type="radio" name="q10" value="C"> C</label>
-          <label><input type="radio" name="q10" value="D"> D</label>
+        <div class="options">
+          <label><input type="radio" name="q10" value="A"> a) 10 ohms</label>
+          <label><input type="radio" name="q10" value="B"> b) 15 ohms</label>
+          <label><input type="radio" name="q10" value="C"> c) 20 ohms</label>
+          <label><input type="radio" name="q10" value="D"> d) 25 ohms</label>
+          <label><input type="radio" name="q10" value="E"> e) 8 ohms</label>
         </div>
       </div>
 
@@ -319,9 +340,9 @@
   </div>
 
   <script>
+    // Cole a nova URL gerada pelo Power Automate entre as aspas abaixo
     const powerAutomateUrl = "https://default73319f4289084b899f8d558cf4d5d7.76.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/20/workflows/0d21e5d297d74711b3867ad0c140c99a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=MKLIJzd6zjtJQxQcvYj14EskOrG8dx1GtlDdLiCyCL8";
-
-    // Verifica de imediato se o aluno já fez o envio nesta máquina/tablet
+    // Bloqueia se a prova já tiver sido enviada nesta máquina/tablet
     if (localStorage.getItem("provaEnviada") === "true") {
       document.getElementById("mainContainer").innerHTML = `
         <div class="blocked-screen">
@@ -335,14 +356,14 @@
     let trocasDeTela = 0;
     let isSubmitted = false;
 
-    // Detecta mudança de aba / saída da tela
+    // Detecta troca de aba ou saída do aplicativo no celular/tablet
     document.addEventListener("visibilitychange", function() {
       if (document.hidden && !isSubmitted) {
         trocasDeTela++;
       }
     });
 
-    // Função centralizada para enviar os resultados
+    // Função central para envio dos dados
     function submitResults(isForced = false, tentativaAtualizacao = "NÃO") {
       if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
 
@@ -397,14 +418,14 @@
       submitResults(false, "NÃO");
     }
 
-    // Captura recarregamento ou fechamento no Tablet / Mobile
+    // Captura o gesto de atualização no tablet/mobile (ex: deslizar para baixo)
     window.addEventListener("pagehide", function () {
       if (!isSubmitted) {
         submitResults(true, "SIM");
       }
     });
 
-    // Captura recarregamento no Desktop
+    // Captura o recarregamento/fechamento no computador
     window.addEventListener("beforeunload", function (e) {
       if (!isSubmitted) {
         submitResults(true, "SIM");
