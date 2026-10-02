@@ -373,7 +373,7 @@
 
     let trocasDeTela = parseInt(localStorage.getItem("trocasDeTela") || "0");
     let isSubmitted = false;
-    let lastSwitchTime = 0;
+    let lastSwitchTime = 0; // Controla o tempo da última troca registrada
 
     // Se a prova já foi enviada neste navegador, bloqueia imediatamente
     if (localStorage.getItem("provaEnviada") === "true") {
@@ -432,12 +432,13 @@
       localStorage.setItem("trocasDeTela", trocasDeTela.toString());
     }
 
-    // Registra a saída da tela/aplicativo
+    // REGISTRO DE TROCA DE TELA COM TRAVA DE 3 SEGUNDOS (FILTRO DE DISPAROS DUPLICADOS)
     function registerScreenSwitch() {
       if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
 
       const now = Date.now();
-      if (now - lastSwitchTime > 1000) {
+      // Exige pelo menos 3000ms (3 segundos) de intervalo entre contagens
+      if (now - lastSwitchTime > 3000) {
         trocasDeTela++;
         lastSwitchTime = now;
         localStorage.setItem("trocasDeTela", trocasDeTela.toString());
@@ -452,9 +453,10 @@
       
       setTimeout(() => {
         alertBox.style.display = "none";
-      }, 6000);
+      }, 5000);
     }
 
+    // Apenas visibilitychange é suficiente com a trava de tempo
     document.addEventListener("visibilitychange", function() {
       if (document.hidden) {
         registerScreenSwitch();
@@ -465,7 +467,7 @@
       registerScreenSwitch();
     });
 
-    // Função de envio reconstruída (Sem sendBeacon)
+    // Função de envio do formulário
     function submitResults(isForced = false, tentativaAtualizacao = "NÃO") {
       if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
 
@@ -490,7 +492,6 @@
       isSubmitted = true;
       localStorage.setItem("provaEnviada", "true");
 
-      // Dispara o envio HTTP para o Power Automate
       fetch(powerAutomateUrl, {
         method: 'POST',
         headers: { 
