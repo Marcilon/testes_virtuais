@@ -120,7 +120,7 @@
       margin-right: 10px;
     }
 
-    /* Estilo para opções desabilitadas */
+    /* Estilo para opções desabilitadas enquanto não preenche nome e matrícula */
     .options label.disabled-label {
       opacity: 0.5;
       cursor: not-allowed;
@@ -154,7 +154,7 @@
       font-size: 14px;
     }
 
-    /* Alerta Flutuante (Sempre Visível na Tela) */
+    /* Alerta Flutuante para Troca de Tela */
     #alertBox {
       display: none;
       position: fixed;
@@ -375,7 +375,7 @@
     let isSubmitted = false;
     let lastSwitchTime = 0;
 
-    // Se já foi enviada, bloqueia a tela
+    // Se a prova já foi enviada neste navegador, bloqueia imediatamente
     if (localStorage.getItem("provaEnviada") === "true") {
       showBlockedScreen();
     }
@@ -385,12 +385,12 @@
         <div class="blocked-screen">
           <h1 style="color: var(--accent);">Avaliação Concluída / Bloqueada</h1>
           <p>Sua prova foi enviada e registrada no sistema.</p>
-          <p>Não é possível realizar novas tentativas.</p>
+          <p>Não é possível realizar novas tentativas neste navegador.</p>
         </div>
       `;
     }
 
-    // Ativa/desativa alternativas conforme o preenchimento do nome e matrícula
+    // Ativa/desativa alternativas conforme preenchimento do Nome e Matrícula
     function validateIdentification() {
       const aluno = document.getElementById("aluno").value.trim();
       const matricula = document.getElementById("matricula").value.trim();
@@ -415,7 +415,7 @@
     document.getElementById("aluno").addEventListener("input", validateIdentification);
     document.getElementById("matricula").addEventListener("input", validateIdentification);
 
-    // Salva respostas continuamente
+    // Salva progresso continuamente
     function saveProgress() {
       const aluno = document.getElementById("aluno").value;
       const matricula = document.getElementById("matricula").value;
@@ -432,12 +432,11 @@
       localStorage.setItem("trocasDeTela", trocasDeTela.toString());
     }
 
-    // Função unificada para registrar a saída da tela
+    // Registra a saída da tela/aplicativo
     function registerScreenSwitch() {
       if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
 
       const now = Date.now();
-      // Previne múltiplos registros em menos de 1 segundo (caso o tablet filtre blur e visibilitychange juntos)
       if (now - lastSwitchTime > 1000) {
         trocasDeTela++;
         lastSwitchTime = now;
@@ -446,19 +445,16 @@
       }
     }
 
-    // Exibe o banner flutuante no topo
     function showAlertBox() {
       const alertBox = document.getElementById("alertBox");
       alertBox.style.display = "block";
       alertBox.innerHTML = `⚠️ ATENÇÃO: Troca de tela/aplicativo detectada! Total: ${trocasDeTela}`;
       
-      // Esconde o aviso automaticamente após 6 segundos
       setTimeout(() => {
         alertBox.style.display = "none";
       }, 6000);
     }
 
-    // Eventos combinados para garantir detecção em tablets
     document.addEventListener("visibilitychange", function() {
       if (document.hidden) {
         registerScreenSwitch();
@@ -469,7 +465,7 @@
       registerScreenSwitch();
     });
 
-    // Função de envio do formulário
+    // Função de envio reconstruída (Sem sendBeacon)
     function submitResults(isForced = false, tentativaAtualizacao = "NÃO") {
       if (isSubmitted || localStorage.getItem("provaEnviada") === "true") return;
 
@@ -494,19 +490,21 @@
       isSubmitted = true;
       localStorage.setItem("provaEnviada", "true");
 
-      const jsonData = JSON.stringify(payload);
-
-      if (navigator.sendBeacon) {
-        const blob = new Blob([jsonData], { type: 'application/json' });
-        navigator.sendBeacon(powerAutomateUrl, blob);
-      } else {
-        fetch(powerAutomateUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: jsonData,
-          keepalive: true
-        });
-      }
+      // Dispara o envio HTTP para o Power Automate
+      fetch(powerAutomateUrl, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(payload),
+        keepalive: true
+      })
+      .then(response => {
+        console.log("Status de resposta do Power Automate:", response.status);
+      })
+      .catch(error => {
+        console.error("Erro no envio:", error);
+      });
 
       if (!isForced) {
         alert("Sua avaliação foi enviada com sucesso!");
@@ -526,7 +524,7 @@
       submitResults(false, "NÃO");
     }
 
-    // Trava para capturar atualizações de página
+    // Eventos para capturar recarregamento ou fechamento da página
     window.addEventListener("beforeunload", function (e) {
       if (!isSubmitted && localStorage.getItem("provaEnviada") !== "true") {
         submitResults(true, "SIM");
