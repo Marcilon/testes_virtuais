@@ -2,411 +2,405 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Prova N1 - 2026-2 - Fundamentos de Circuitos - PUC Goiás</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avaliação Online - Fundamentos de Circuitos</title>
   <style>
-    * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; }
-    
-    h2 { text-align: center; color: #1a365d; margin-bottom: 5px; font-size: 20px; }
-    p.sub { text-align: center; color: #4a5568; font-size: 13px; margin-top: 0; margin-bottom: 15px; }
-    
-    .setup-box { background: #ffffff; padding: 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); border-left: 5px solid #2b6cb0; }
-    .setup-box label { font-size: 13px; color: #2d3748; font-weight: bold; display: block; margin-top: 8px; }
-    .setup-box input { width: 100%; padding: 10px; font-size: 15px; border: 1px solid #cbd5e0; border-radius: 6px; margin-top: 4px; outline: none; }
-    .setup-box input:focus { border-color: #2b6cb0; }
-
-    .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    .question { font-weight: bold; color: #1a202c; margin-bottom: 12px; font-size: 14px; line-height: 1.4; white-space: pre-line; }
-    
-    .option-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding: 8px; border-radius: 6px; background: #f8fafc; border: 1px solid #e2e8f0; cursor: pointer; transition: all 0.2s; }
-    .option-row.selected { border-color: #2b6cb0; background-color: #ebf8ff; }
-    .option-text { font-size: 13px; color: #2d3748; flex: 1; padding-right: 8px; }
-    
-    .scratch-container { position: relative; width: 100px; height: 38px; border-radius: 6px; overflow: hidden; flex-shrink: 0; }
-    .behind-content { 
-      position: absolute; width: 100%; height: 100%; 
-      display: flex; align-items: center; justify-content: center; 
-      font-weight: bold; font-size: 10px; text-align: center; border-radius: 6px;
+    :root {
+      --primary: #003366;
+      --secondary: #0055a5;
+      --accent: #d9534f;
+      --bg: #f4f7f9;
+      --card-bg: #ffffff;
+      --text: #333333;
     }
-    
-    .correct { background-color: #c6f6d5; color: #22543d; }
-    .wrong { background-color: #fed7d7; color: #742a2a; }
-    
-    canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; touch-action: none; cursor: pointer; }
-    .disabled-option { opacity: 0.4; pointer-events: none; }
 
-    .finish-btn { background: #2b6cb0; color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(43, 108, 176, 0.3); }
-    .finish-btn:disabled { background: #a0aec0; }
-    #bloqueio { text-align: center; padding: 40px 20px; color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 8px; margin-top: 30px; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    header {
+      text-align: center;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 24px;
+    }
+
+    .user-info {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .input-group {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .question-card {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .question-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .options label {
+      display: block;
+      padding: 10px;
+      margin: 5px 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .options label:hover {
+      background: #eef5fc;
+    }
+
+    .options input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .scratch-card {
+      position: relative;
+      background: #e0e0e0;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 10px;
+      user-select: none;
+    }
+
+    .scratch-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #bbb;
+      color: #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: opacity 0.3s;
+    }
+
+    .scratch-overlay.revealed {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    button.btn-submit {
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s;
+    }
+
+    button.btn-submit:hover {
+      background-color: var(--secondary);
+    }
+
+    .warning-banner {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 10px 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      border: 1px solid #ffeeba;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
-  <div id="main-content">
-    <h2 id="quiz-title">Prova N1 - 2026-2</h2>
-    <p class="sub" id="quiz-subtitle">Fundamentos de Circuitos - PUC Goiás | Prof. Marcilon Fonseca</p>
+  <div class="container">
+    <header>
+      <h1>Pontifícia Universidade Católica de Goiás</h1>
+      <h2>Fundamentos de Circuitos Elétricos — Avaliação Objetiva - Prof. Marcilon Fonseca</h2>
+    </header>
 
-    <div class="setup-box">
-      <label for="studentName">Nome Completo do Aluno:</label>
-      <input type="text" id="studentName" placeholder="Digite seu nome completo">
-      
-      <label for="studentId">Matrícula / RA:</label>
-      <input type="text" id="studentId" placeholder="Digite sua matrícula">
+    <div class="warning-banner">
+      ⚠️ <strong>Atenção:</strong> O sistema detecta trocas de tela/aba e tentativas de atualização da página. Mantenha o foco nesta tela até concluir.
     </div>
 
-    <div id="quiz-container"></div>
+    <form id="examForm">
+      <div class="user-info">
+        <div class="input-group">
+          <label for="aluno">Nome Completo do Aluno:</label>
+          <input type="text" id="aluno" name="aluno" required placeholder="Digite seu nome completo">
+        </div>
+        <div class="input-group">
+          <label for="matricula">Matrícula:</label>
+          <input type="text" id="matricula" name="matricula" required placeholder="Digite sua matrícula">
+        </div>
+      </div>
 
-    <button class="finish-btn" onclick="submitResults(false, 'NÃO')">Enviar Respostas</button>
+      <!-- Questão 1 -->
+      <div class="question-card">
+        <div class="question-title">1. Um resistor de 10 Ω é submetido a uma tensão de 20 V. Qual é a corrente elétrica que circula por ele?</div>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> A) 0,5 A</label>
+          <label><input type="radio" name="q1" value="B"> B) 2,0 A</label>
+          <label><input type="radio" name="q1" value="C"> C) 200 A</label>
+          <label><input type="radio" name="q1" value="D"> D) 10 A</label>
+        </div>
+      </div>
+
+      <!-- Questão 2 -->
+      <div class="question-card">
+        <div class="question-title">2. Em um circuito em série com dois resistores de 15 Ω e 25 Ω, qual é a resistência equivalente total?</div>
+        <div class="options">
+          <label><input type="radio" name="q2" value="A"> A) 40 Ω</label>
+          <label><input type="radio" name="q2" value="B"> B) 9,37 Ω</label>
+          <label><input type="radio" name="q2" value="C"> C) 10 Ω</label>
+          <label><input type="radio" name="q2" value="D"> D) 375 Ω</label>
+        </div>
+      </div>
+
+      <!-- Questão 3 -->
+      <div class="question-card">
+        <div class="question-title">3. Dois resistores de 100 Ω estão conectados em paralelo. A resistência equivalente desse arranjo é:</div>
+        <div class="options">
+          <label><input type="radio" name="q3" value="A"> A) 200 Ω</label>
+          <label><input type="radio" name="q3" value="B"> B) 50 Ω</label>
+          <label><input type="radio" name="q3" value="C"> C) 100 Ω</label>
+          <label><input type="radio" name="q3" value="D"> D) 25 Ω</label>
+        </div>
+      </div>
+
+      <!-- Questão 4 -->
+      <div class="question-card">
+        <div class="question-title">4. A Lei de Kirchhoff das Correntes (LCK) fundamenta-se em qual princípio da física?</div>
+        <div class="options">
+          <label><input type="radio" name="q4" value="A"> A) Conservação do Momento Linear</label>
+          <label><input type="radio" name="q4" value="B"> B) Conservação de Energia</label>
+          <label><input type="radio" name="q4" value="C"> C) Lei de Indução de Faraday</label>
+          <label><input type="radio" name="q4" value="D"> D) Conservação da Carga Elétrica</label>
+        </div>
+      </div>
+
+      <!-- Questão 5 -->
+      <div class="question-card">
+        <div class="question-title">5. A Lei de Kirchhoff das Tensões (LKT) estabelece que a soma algébrica das diferenças de potencial em uma malha fechada é igual a:</div>
+        <div class="options">
+          <label><input type="radio" name="q5" value="A"> A) Zero</label>
+          <label><input type="radio" name="q5" value="B"> B) Tensão da Fonte Principal</label>
+          <label><input type="radio" name="q5" value="C"> C) Corrente Total x Resistência</label>
+          <label><input type="radio" name="q5" value="D"> D) Infinito</label>
+        </div>
+      </div>
+
+      <!-- Questão 6 -->
+      <div class="question-card">
+        <div class="question-title">6. Um elemento passivo consome uma corrente de 3 A quando aplicado 12 V. Qual é a potência dissipada por ele?</div>
+        <div class="options">
+          <label><input type="radio" name="q6" value="A"> A) 4 W</label>
+          <label><input type="radio" name="q6" value="B"> B) 15 W</label>
+          <label><input type="radio" name="q6" value="C"> C) 0,25 W</label>
+          <label><input type="radio" name="q6" value="D"> D) 36 W</label>
+        </div>
+      </div>
+
+      <!-- Questão 7 -->
+      <div class="question-card">
+        <div class="question-title">7. O Teorema de Thévenin estabelece que qualquer circuito linear de dois terminais pode ser substituído por:</div>
+        <div class="options">
+          <label><input type="radio" name="q7" value="A"> A) Uma fonte de corrente em paralelo com um resistor</label>
+          <label><input type="radio" name="q7" value="B"> B) Uma fonte de tensão em série com um resistor</label>
+          <label><input type="radio" name="q7" value="C"> C) Apenas um resistor equivalente em paralelo</label>
+          <label><input type="radio" name="q7" value="D"> D) Uma fonte de tensão em paralelo com um capacitor</label>
+        </div>
+      </div>
+
+      <!-- Questão 8 -->
+      <div class="question-card">
+        <div class="question-title">8. No Teorema de Norton, a fonte de corrente equivalente ($I_N$) corresponde à:</div>
+        <div class="options">
+          <label><input type="radio" name="q8" value="A"> A) Corrente de curto-circuito entre os terminais</label>
+          <label><input type="radio" name="q8" value="B"> B) Corrente em circuito aberto nos terminais</label>
+          <label><input type="radio" name="q8" value="C"> C) Tensão de Thévenin dividida pela resistência de carga</label>
+          <label><input type="radio" name="q8" value="D"> D) Soma das correntes de todas as fontes independentes</label>
+        </div>
+      </div>
+
+      <!-- Questão 9 -->
+      <div class="question-card">
+        <div class="question-title">9. Raspe para revelar o parâmetro da Questão 9:</div>
+        <div class="scratch-card">
+          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar a pergunta</div>
+          <p><strong>Questão 9:</strong> Em um circuito de Corrente Contínua (CC) em regime permanente, como se comporta um capacitor ideal?</p>
+        </div>
+        <div class="options" style="margin-top:15px;">
+          <label><input type="radio" name="q9" value="A"> A) Como um circuito aberto</label>
+          <label><input type="radio" name="q9" value="B"> B) Como um curto-circuito</label>
+          <label><input type="radio" name="q9" value="C"> C) Como um resistor de valor nulo</label>
+          <label><input type="radio" name="q9" value="D"> D) Como uma fonte de tensão ideal</label>
+        </div>
+      </div>
+
+      <!-- Questão 10 -->
+      <div class="question-card">
+        <div class="question-title">10. Raspe para revelar o parâmetro da Questão 10:</div>
+        <div class="scratch-card">
+          <div class="scratch-overlay" onclick="this.classList.add('revealed')">Clique/Raspe aqui para revelar a pergunta</div>
+          <p><strong>Questão 10:</strong> Em um circuito de Corrente Contínua (CC) em regime permanente, como se comporta um indutor ideal?</p>
+        </div>
+        <div class="options" style="margin-top:15px;">
+          <label><input type="radio" name="q10" value="A"> A) Como um curto-circuito</label>
+          <label><input type="radio" name="q10" value="B"> B) Como um circuito aberto</label>
+          <label><input type="radio" name="q10" value="C"> C) Como uma fonte de corrente independente</label>
+          <label><input type="radio" name="q10" value="D"> D) Como um resistor de alta resistência</label>
+        </div>
+      </div>
+
+      <button type="button" class="btn-submit" onclick="manualSubmit()">Enviar Avaliação</button>
+    </form>
   </div>
 
   <script>
+    // URL gerada no seu fluxo do Power Automate (Substitua entre as aspas abaixo)
     const powerAutomateUrl = "https://default73319f4289084b899f8d558cf4d5d7.76.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/20/workflows/0d21e5d297d74711b3867ad0c140c99a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=MKLIJzd6zjtJQxQcvYj14EskOrG8dx1GtlDdLiCyCL8";
-
-    const quizConfig = {
-      title: "Prova N1 - 2026-2",
-      subtitle: "Fundamentos de Circuitos - PUC Goiás | Prof. Marcilon Fonseca",
-      questions: [
-        {
-          id: 1,
-          title: "1) Um resistor de carbono possui valor nominal R = 120 Ω e potência máxima suportada de 0,5 W (1/2 W). Qual é a máxima tensão contínua V que pode ser aplicada aos terminais deste resistor sem exceder a sua capacidade de dissipação de potência?",
-          options: [
-            { letter: "A", text: "6 V", correct: false },
-            { letter: "B", text: "7,75 V", correct: true },
-            { letter: "C", text: "12 V", correct: false },
-            { letter: "D", text: "24 V", correct: false },
-            { letter: "E", text: "60 V", correct: false }
-          ]
-        },
-        {
-          id: 2,
-          title: "2) Considere um nó onde a tensão é mantida em V_nodo = 24 V em relação à referência. Conectados a esse nó temos um resistor de 4 Ω ligado ao terra e uma fonte de corrente dependente que injeta no nó uma corrente i_dep = 0,5 * Vx (onde Vx = 24 V é a tensão sobre o resistor de 4 Ω). A potência absorvida pelo resistor de 4 Ω e a corrente injetada pela fonte dependente são, respectivamente:",
-          options: [
-            { letter: "A", text: "144 W e 12 A", correct: true },
-            { letter: "B", text: "144 W e 6 A", correct: false },
-            { letter: "C", text: "72 W e 12 A", correct: false },
-            { letter: "D", text: "576 W e 24 A", correct: false },
-            { letter: "E", text: "288 W e 12 A", correct: false }
-          ]
-        },
-        {
-          id: 3,
-          title: "3) Três resistores R1 = 10 Ω, R2 = 15 Ω e R3 = 25 Ω estão conectados em série com uma fonte de tensão contínua de V_S = 100 V. A queda de tensão sobre o resistor R2 e a potência fornecida pela fonte são, respectivamente:",
-          options: [
-            { letter: "A", text: "15 V e 100 W", correct: false },
-            { letter: "B", text: "30 V e 200 W", correct: true },
-            { letter: "C", text: "30 V e 100 W", correct: false },
-            { letter: "D", text: "50 V e 200 W", correct: false },
-            { letter: "E", text: "15 V e 50 W", correct: false }
-          ]
-        },
-        {
-          id: 4,
-          title: "4) Um circuito de duas malhas possui uma fonte independente de tensão de 30 V na malha 1, um resistor R1 = 5 Ω exclusivo da malha 1, um resistor R2 = 10 Ω compartilhado entre a malha 1 e a malha 2, e um resistor R3 = 10 Ω exclusivo da malha 2. Não há fontes na malha 2. As correntes de malha i1 e i2 (ambas no sentido horário) são, respectivamente:",
-          options: [
-            { letter: "A", text: "i1 = 3 A; i2 = 1 A", correct: false },
-            { letter: "B", text: "i1 = 2 A; i2 = 1 A", correct: false },
-            { letter: "C", text: "i1 = 2 A; i2 = 2 A", correct: false },
-            { letter: "D", text: "i1 = 2,4 A; i2 = 1,2 A", correct: true },
-            { letter: "E", text: "i1 = 3 A; i2 = 1,5 A", correct: false }
-          ]
-        },
-        {
-          id: 5,
-          title: "5) Um nó A é alimentado por uma fonte de corrente independente de 10 A. Deste nó partem três ramos para a referência: Ramo 1 (resistor de 20 Ω), Ramo 2 (resistor de 30 Ω) e Ramo 3 (associação em série de 10 Ω e 5 Ω). A tensão V_A no nó A e a corrente no Ramo 3 são, respectivamente:",
-          options: [
-            { letter: "A", text: "60 V e 4 A", correct: true },
-            { letter: "B", text: "50 V e 3,33 A", correct: false },
-            { letter: "C", text: "100 V e 6,67 A", correct: false },
-            { letter: "D", text: "120 V e 8 A", correct: false },
-            { letter: "E", text: "30 V e 2 A", correct: false }
-          ]
-        },
-        {
-          id: 6,
-          title: "6) Considere um laço fechado percorrido no sentido horário contendo: uma fonte de 40 V (+40 V de elevação), um resistor R1 com queda v1 = 12 V, uma fonte dependente fornecendo elevação v_dep = 2 * v1, e um resistor R2 com queda de tensão v2. Pela LKT, a queda de tensão v2 sobre R2 é:",
-          options: [
-            { letter: "A", text: "16 V", correct: false },
-            { letter: "B", text: "28 V", correct: false },
-            { letter: "C", text: "52 V", correct: false },
-            { letter: "D", text: "64 V", correct: true },
-            { letter: "E", text: "76 V", correct: false }
-          ]
-        },
-        {
-          id: 7,
-          title: "7) Um circuito divisor de tensão tem fonte V_S = 24 V e dois resistores em série, R1 = 4 kΩ e R2 = 12 kΩ. Uma carga RL = 12 kΩ é conectada em paralelo com R2. A tensão V_out sobre a carga RL com o circuito carregado é:",
-          options: [
-            { letter: "A", text: "18 V", correct: false },
-            { letter: "B", text: "14,4 V", correct: true },
-            { letter: "C", text: "12,0 V", correct: false },
-            { letter: "D", text: "9,6 V", correct: false },
-            { letter: "E", text: "6,0 V", correct: false }
-          ]
-        },
-        {
-          id: 8,
-          title: "8) Três resistores R1 = 10 Ω, R2 = 20 Ω e R3 = 60 Ω estão conectados em paralelo e alimentados por uma fonte de corrente constante de I_T = 18 A. Qual é a potência dissipada exclusivamente no resistor R3?",
-          options: [
-            { letter: "A", text: "194,4 W", correct: true },
-            { letter: "B", text: "432 W", correct: false },
-            { letter: "C", text: "720 W", correct: false },
-            { letter: "D", text: "120 W", correct: false },
-            { letter: "E", text: "240 W", correct: false }
-          ]
-        },
-        {
-          id: 9,
-          title: "9) Um circuito é composto por uma fonte de corrente contínua I_S = 10 A alimentando uma associação em paralelo: no ramo 1 temos R1 = 12 Ω; no ramo 2 temos dois resistores em série, R2 = 4 Ω e R3 = 8 Ω. A corrente em R1 e a corrente em R3 são, respectivamente:",
-          options: [
-            { letter: "A", text: "5 A e 5 A", correct: true },
-            { letter: "B", text: "2,5 A e 7,5 A", correct: false },
-            { letter: "C", text: "6,67 A e 3,33 A", correct: false },
-            { letter: "D", text: "7,5 A e 2,5 A", correct: false },
-            { letter: "E", text: "8 A e 2 A", correct: false }
-          ]
-        },
-        {
-          id: 10,
-          title: "10) Determine a resistência equivalente R_AB entre os terminais A e B de uma rede com: dois resistores de 12 Ω em paralelo entre si (Grupo 1); o Grupo 1 em série com um resistor de 4 Ω (Grupo 2); o Grupo 2 em paralelo com um resistor de 10 Ω (Grupo 3); e o conjunto em série com um resistor final de 5 Ω. A resistência R_AB é:",
-          options: [
-            { letter: "A", text: "10 Ω", correct: true },
-            { letter: "B", text: "15 Ω", correct: false },
-            { letter: "C", text: "20 Ω", correct: false },
-            { letter: "D", text: "25 Ω", correct: false },
-            { letter: "E", text: "8 Ω", correct: false }
-          ]
-        }
-      ]
-    };
-
-    let selectedAnswers = {}; 
+    let trocasDeTela = 0;
     let isSubmitted = false;
-    let tabSwitchCount = 0;
 
+    // Detecta mudança de aba / saída da tela no Desktop e Celular
+    document.addEventListener("visibilitychange", function() {
+      if (document.hidden && !isSubmitted) {
+        trocasDeTela++;
+      }
+    });
+
+    // Função centralizada para enviar os resultados
+    function submitResults(isForced = false, tentativaAtualizacao = "NÃO") {
+      if (isSubmitted) return;
+
+      const aluno = document.getElementById("aluno").value || "Aluno Não Identificado";
+      const matricula = document.getElementById("matricula").value || "Sem Matrícula";
+
+      // Coleta de respostas
+      const respostas = {};
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        respostas[i] = selected ? selected.value : "N/A";
+      }
+
+      // Monta o payload
+      const payload = {
+        Data: new Date().toLocaleString("pt-BR"),
+        Aluno: aluno,
+        Matricula: matricula,
+        Respostas: JSON.stringify(respostas),
+        TrocasDeTela: trocasDeTela,
+        TentativaAtualizacao: tentativaAtualizacao
+      };
+
+      isSubmitted = true;
+
+      // Envio ultra-rápido via Beacon (ideal para saída/recarregamento)
+      if (navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        navigator.sendBeacon(powerAutomateUrl, blob);
+      } else {
+        // Fallback síncrono/padrão caso o navegador não suporte beacon
+        fetch(powerAutomateUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        });
+      }
+
+      if (!isForced) {
+        alert("Sua avaliação foi enviada com sucesso!");
+        window.location.reload();
+      }
+    }
+
+    // Envio manual ao clicar no botão
+    function manualSubmit() {
+      const aluno = document.getElementById("aluno").value;
+      const matricula = document.getElementById("matricula").value;
+
+      if (!aluno || !matricula) {
+        alert("Por favor, preencha o Nome Completo e a Matrícula antes de enviar.");
+        return;
+      }
+
+      submitResults(false, "NÃO");
+    }
+
+    // Evento otimizado para celulares e tablets (Safari / Chrome Mobile) ao atualizar ou fechar aba
+    window.addEventListener("pagehide", function (e) {
+      if (!isSubmitted) {
+        submitResults(true, "SIM");
+      }
+    });
+
+    // Evento de travamento/aviso para navegadores Desktop
     window.addEventListener("beforeunload", function (e) {
       if (!isSubmitted) {
         submitResults(true, "SIM");
         e.preventDefault();
-        e.returnValue = "Atenção: Ao sair ou recarregar, seu teste será enviado no estado atual e registrado no sistema!";
+        e.returnValue = "Atenção: Seu teste será enviado no estado atual e registrado!";
         return e.returnValue;
       }
     });
-
-    function renderQuiz() {
-      document.getElementById('quiz-title').innerText = quizConfig.title;
-      document.getElementById('quiz-subtitle').innerText = quizConfig.subtitle;
-
-      const container = document.getElementById('quiz-container');
-      if (!container) return;
-      container.innerHTML = '';
-      
-      quizConfig.questions.forEach((q) => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.id = `question-card-${q.id}`;
-        
-        let html = `<div class="question">${q.title}</div>`;
-        
-        q.options.forEach((opt, optIndex) => {
-          const statusClass = opt.correct ? 'correct' : 'wrong';
-          const statusText = opt.correct ? '★ CORRETO' : '❌ ERRADO';
-          const canvasId = `canvas-${q.id}-${optIndex}`;
-
-          html += `
-            <div class="option-row" id="row-${q.id}-${optIndex}" onclick="selectOption(${q.id}, ${optIndex}, '${opt.letter}')">
-              <div class="option-text"><b>${opt.letter})</b> ${opt.text}</div>
-              <div class="scratch-container">
-                <div class="behind-content ${statusClass}">${statusText}</div>
-                <canvas id="${canvasId}" width="100" height="38"></canvas>
-              </div>
-            </div>
-          `;
-        });
-        
-        card.innerHTML = html;
-        container.appendChild(card);
-
-        q.options.forEach((_, optIndex) => {
-          initCanvas(`canvas-${q.id}-${optIndex}`, q.id, optIndex, q.options[optIndex].letter);
-        });
-      });
-    }
-
-    function selectOption(qId, optIndex, letter) {
-      const name = document.getElementById('studentName').value.trim();
-      const id = document.getElementById('studentId').value.trim();
-
-      if (!name || !id) {
-        alert("⚠️ Preencha seu Nome e Matrícula/RA antes de selecionar uma resposta!");
-        if(!name) document.getElementById('studentName').focus();
-        else document.getElementById('studentId').focus();
-        return;
-      }
-
-      if (selectedAnswers[qId] && selectedAnswers[qId] !== letter) return;
-
-      if (!selectedAnswers[qId]) {
-        selectedAnswers[qId] = letter;
-        
-        // Revela automaticamente a raspadinha ao selecionar
-        const canvas = document.getElementById(`canvas-${qId}-${optIndex}`);
-        if (canvas) {
-          const ctx = canvas.getContext('2d');
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-        
-        const selectedRow = document.getElementById(`row-${qId}-${optIndex}`);
-        if (selectedRow) selectedRow.classList.add('selected');
-
-        lockOtherOptions(qId, optIndex);
-      }
-    }
-
-    function initCanvas(canvasId, qId, optIndex, letter) {
-      const canvas = document.getElementById(canvasId);
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-
-      ctx.fillStyle = '#cbd5e0';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#4a5568';
-      ctx.font = 'bold 10px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText('RASPE AQUI', canvas.width / 2, 23);
-
-      let isDrawing = false;
-
-      function scratch(e) {
-        e.stopPropagation();
-        selectOption(qId, optIndex, letter);
-        
-        if (!isDrawing) return;
-        e.preventDefault();
-
-        const rect = canvas.getBoundingClientRect();
-        const touch = e.touches ? e.touches[0] : e;
-        const x = (touch.clientX - rect.left) * (canvas.width / rect.width);
-        const y = (touch.clientY - rect.top) * (canvas.height / rect.height);
-
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(x, y, 12, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
-      canvas.addEventListener('touchmove', scratch);
-      canvas.addEventListener('touchend', () => { isDrawing = false; });
-      canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
-      canvas.addEventListener('mousemove', scratch);
-      canvas.addEventListener('mouseup', () => { isDrawing = false; });
-    }
-
-    function lockOtherOptions(qId, chosenOptIndex) {
-      const q = quizConfig.questions.find(item => item.id === qId);
-      q.options.forEach((_, optIndex) => {
-        if (optIndex !== chosenOptIndex) {
-          const row = document.getElementById(`row-${qId}-${optIndex}`);
-          if (row) row.classList.add('disabled-option');
-        }
-      });
-    }
-
-    function submitResults(isForced = false, reloadAttempt = "NÃO") {
-      if (isSubmitted) return;
-
-      let name = document.getElementById('studentName') ? document.getElementById('studentName').value.trim() : "";
-      let studentId = document.getElementById('studentId') ? document.getElementById('studentId').value.trim() : "";
-
-      if ((!name || !studentId) && !isForced) {
-        alert("Por favor, preencha seu nome e sua matrícula antes de enviar.");
-        return;
-      }
-
-      if (Object.keys(selectedAnswers).length < quizConfig.questions.length && !isForced) {
-        if(!confirm("Você ainda não respondeu todas as questões. Deseja enviar assim mesmo?")) return;
-      }
-
-      if (isForced && !name) {
-        name = "ALUNO NÃO IDENTIFICADO (Saindo/Recarregando)";
-        studentId = "N/A";
-      }
-
-      const btn = document.querySelector('.finish-btn');
-      if (btn) {
-        btn.innerText = "Enviando...";
-        btn.disabled = true;
-      }
-
-      isSubmitted = true;
-
-      const now = new Date();
-      const dataHora = now.toISOString().replace('T', ' ').substring(0, 19);
-
-      const payload = {
-        Data: dataHora,
-        Aluno: name,
-        Matricula: studentId,
-        Respostas: JSON.stringify(selectedAnswers),
-        TrocasDeTela: tabSwitchCount,
-        TentativaAtualizacao: reloadAttempt
-      };
-
-      if (isForced && navigator.sendBeacon) {
-        const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-        navigator.sendBeacon(powerAutomateUrl, blob);
-        return;
-      }
-
-      fetch(powerAutomateUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(response => {
-        if (response.ok) {
-          document.getElementById("main-content").innerHTML = `
-            <div style="text-align:center; color:#155724; background:#d4edda; padding:30px; border-radius:8px; margin-top: 30px;">
-              <h2>✅ Prova Enviada com Sucesso!</h2>
-              <p>Obrigado, <strong>${name}</strong>. Suas respostas foram registradas.</p>
-            </div>
-          `;
-        } else {
-          throw new Error("Erro na requisição");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        if (!isForced) {
-          alert("Erro ao conectar com o servidor. Tente novamente.");
-          isSubmitted = false;
-          if (btn) {
-            btn.innerText = "Enviar Respostas";
-            btn.disabled = false;
-          }
-        }
-      });
-    }
-
-    document.addEventListener("visibilitychange", function() {
-      if (document.hidden && !isSubmitted) {
-        tabSwitchCount++;
-        if (tabSwitchCount === 1) alert("⚠️ ATENÇÃO: Você saiu da tela do teste!\n\n(1ª infração registrada).");
-        else if (tabSwitchCount === 2) alert("⚠️ AVISO CRÍTICO: Segunda saída detectada!\n\nMais uma saída bloqueará o teste.");
-        else if (tabSwitchCount >= 3) {
-          alert("🚫 TESTE BLOQUEADO!\n\nLimite de saídas excedido. Suas respostas foram enviadas.");
-          document.body.style.pointerEvents = "none";
-          document.body.style.opacity = "0.4";
-          submitResults(true, "NÃO");
-        }
-      }
-    });
-
-    window.onload = function() {
-      renderQuiz();
-    };
   </script>
 </body>
 </html>
